@@ -117,4 +117,4 @@ lines(log10(trialSizes), rep(0.5, length(trialSizes)))
 
 **How many rolls appear to be necessary to get convergence on the expected values on the expected values for mean and variance?**
 
-As we can see in the plot above, beginning at trial 200 the difference between the actual and expected mean is consistently below 0.5. Similarly, after trial 100, the difference between the actual and expected variance tends to be below 0.
+As we can see in the plot above, beginning at trial 1000 the difference between the actual and expected mean is consistently below 0.5. Similarly, after trial 1000, the difference between the actual and expected variance tends to be below 0.
