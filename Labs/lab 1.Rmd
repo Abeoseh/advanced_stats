@@ -52,7 +52,7 @@ rollLoadedDie <- function(numrolls){
   # final_vec[rolls > .4 & rolls <= .5] <- 5
   # final_vec[rolls > .5] <- 6
   
-  final_vec <- sample(1:6, numrolls, c(.1,.1,.1,.1,.1,.5), replace = TRUE)
+  final_vec <- sample(1:6, numrolls, prob = c(.1,.1,.1,.1,.1,.5), replace = TRUE)
   return(final_vec)
 }
   
@@ -73,14 +73,6 @@ hist(rollLoadedDie(100000))
 ```
 
 ```{r}
-## chisq to see if it is different from expected
-
-chisq.test()
-
-
-```
-
-```{r}
 
 trialSizes <- c(5, 10, 20, 25, 30, 40, 50, 100, 200, 300, 400, 500, 1000, 2000, 3000, 4000, 5000, 10000, 20000, 30000, 100000, 1000000, 5000000, 10000000, 50000000, 100000000)
 
@@ -89,10 +81,9 @@ means <- vector(mode = "double", length=length(trialSizes))
 variances <- vector(mode = "double", length=length(trialSizes))
 
 for( i in 1:length(trialSizes) ){
-  rolls <- vector(mode = "double", length=length(trialSizes))
-  
-  means[i] <- mean(rollLoadedDie(i))
-  variances[i] <- var(rollLoadedDie(i))
+
+  means[i] <- mean(rollLoadedDie(trialSizes[i]))
+  variances[i] <- var(rollLoadedDie(trialSizes[i]))
   
 }
 
