@@ -1,0 +1,46 @@
+---
+title: "Lab 1"
+output: html_document
+date: "2026-01-15"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Question 1
+
+Use the mean and sd functions to calculate the mean and standard deviation of the following numbers { 2.3, 4.3 ,1.2 , 3.4, 8.3, 12.2 }
+
+```{r set1}
+set1 <- c(2.3,  4.3 ,1.2 , 3.4, 8.3, 12.2)
+
+print(paste("mean:", mean(set1), "std:", sd(set1)))
+```
+
+## Question 2
+
+Use mean and sd in R to calculate the average and sd of { 4,5,6 …. 678,679,680 } (the set of every positive integer between 4 and 680)
+
+```{r set2}
+set2 <- 4:680
+print(paste("mean:", mean(set2), "std:", sd(set2)))
+
+```
+
+## Question 3
+
+Suppose you are given GC content for sequences from a human genome with values for many sequences: `gc <- runif(1000, min = 0.2, max = 0.8)`
+
+1.  Plot a histogram of gc.
+2.  Compute the mean and standard deviation.
+3.  Does this look like a reasonable sequencing dataset? Why or why not?
+
+```{r set3}
+set.seed(0)
+gc <- runif(1000, min = 0.2, max = 0.8) 
+hist(gc)
+print(paste("mean", mean(gc), "sd", sd(gc)))
+```
+
+This is not a reasonable sequencing dataset. For a single species (human), I would expect them to have relatively similar gc content. I would not expect a wide variety of gc contents across individuals. Instead, I would expect a normal distribution where most people have a similar gc content.
