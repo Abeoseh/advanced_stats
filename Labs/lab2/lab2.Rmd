@@ -15,8 +15,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ![](images/clipboard-1559043268.png)
 
 ```{r casino}
-## prior
-frequency_unloaded = .99
+## priors
+frequency_unloaded = .99 
 frequency_loaded = .01
 
 ## for loaded die
@@ -90,6 +90,7 @@ for (i in 1:length(rolls)){
   priors[1] <- prob_loaded
   priors[2] <- prob_unloaded
   
+  print(priors[1])
   
   title <- paste(title, rolls[i], sep="")
   # plot(1:i, probloaded, main = title, ylim=c(0,1), xlim=c(1,length(rolls)+1))
@@ -136,4 +137,78 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 
 ```{r}
 0.003628974 + 0.9979678
+```
+
+(2) How many times on average would you need to roll a loaded die to be 99.999% sure that it was loaded? (Show your work)
+
+    **You would have to roll the loaded die** **56.095 times to be sure it was loaded.**
+
+**I make a function `rollLoadedDie` to simulate rolling a die 300 times. I then used bayes on the simulated data to determine how many times I would have to roll the die for the probability that it was loaded to reach 99.999%. After doing this 1,000 times, I can estimate that I would have to roll the die 56 times to know it was loaded.**
+
+```{r}
+rollLoadedDie <- function(numrolls){
+  ## given a number of rolls, returns a simulated experiment
+  
+  final_vec <- sample(1:6, numrolls, prob = c(.1,.1,.1,.1,.1,.5), replace = TRUE)
+  return(final_vec)
+}
+
+myRolls <- rollLoadedDie(30)
+```
+
+```{r}
+
+bayesian_update <- function(rolls, priors, p_loaded, p_unloaded){
+  probloadedVec <- vector()
+  
+
+  for (i in 1:length(rolls)){
+  
+    probloadedVec[i] <- priors[1] ## we want to plot the probability that the die is loaded
+
+    ## calculate the probability of the die being loaded given us not rolling a 6 (P(L|N6)) or not rolling a 6 (P(L|6))
+    prob_loaded <- if (rolls[i] != 6){
+      (p_loaded[1] * priors[1])/( (p_loaded[1] * priors[1]) + (p_unloaded[1] * priors[2]) )
+        }else{
+        (p_loaded[2] * priors[1]) / ( (p_loaded[2] * priors[1]) + (p_unloaded[2] * priors[2]) )} 
+    
+    
+    ## calculate the probability of the die being unloaded given us not rolling a 6 (P(UL|N6)) or not rolling a 6 (P(UL|6))   
+    prob_unloaded <- if (rolls[i] != 6){
+      (p_unloaded[1] * priors[2]) / ( (p_loaded[1] * priors[1]) + (p_unloaded[1] * priors[2]) )}else{
+        (p_unloaded[2] * priors[2]) / ( (p_loaded[2] * priors[1]) + (p_unloaded[2] * priors[2]) )} 
+    
+  
+      
+    priors[1] <- prob_loaded
+    priors[2] <- prob_unloaded
+    
+    title <- paste(title, rolls[i], sep="")
+    # plot(1:i, probloaded, main = title, ylim=c(0,1), xlim=c(1,length(rolls)+1))
+    # Sys.sleep(1)
+    if (prob_loaded >=.99999){
+      return(probloadedVec)
+      break}
+  }
+  # plot(1:i, probloadedVec, main = title, ylim=c(0,1), xlim=c(1,length(rolls)+1))
+
+}
+```
+
+```{r}
+# rolls <-c(2,3,2,6,3,5,6,2,6,6,2,6,6,2,3,6,6,6,5,6,6,5,6,6,6,6,6,4,6,3,3,3,6,6,5,6,6)
+
+
+priors <- c(.01,.99) ## our belief aboout the frequency of unloaded die and frequency of loaded die
+p_loaded <- c(0.5, 0.5) # p_not_6_given_loaded, p_6_given_loaded
+p_unloaded <- c(5/6, 1/6) # p_not_6_given_unloaded, p_6_given_unloaded
+
+
+bayes_experiments = vector(length = 1000)
+for (i in 1:length(bayes_experiments)){
+  rolls <- rollLoadedDie(300)
+  bayes_experiments[i] <- length(bayesian_update(rolls, priors, p_loaded, p_unloaded))
+}
+
+sum(bayes_experiments)/length(bayes_experiments)
 ```
