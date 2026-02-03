@@ -16,34 +16,61 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r casino}
 ## frequencies
-frequency_fair = .99
+frequency_unloaded = .99
 frequency_loaded = .01
 
 ## for loaded die
 p_6_given_loaded = .5 # P(six|D_loaded)
-p_not_6_given_loaded = .5 # P(six_c|D_loaded)
+p_not_6_given_loaded = .5 # P(six_c|D_loaded) so .1*5=.5 there are 5 numbers other than 6 on a die
 
-## for an unloaded die
+## for an unloaded dice
 p_not_6_given_unloaded = 5/6 # P(six|D_unloaded)
 p_6_given_unloaded = 1/6 # P(six_c|D_unloaded)
 
 
 ## probability 6 and loaded 
 ## P(6|L)*P(L) or P(L|6)*P(6)
-P_6_and_loaded = p_6_given_loaded * frequency_loaded
+p_6_and_loaded = p_6_given_loaded * frequency_loaded
 
 ## probability 6 and unloaded 
 ## P(6|UL)*P(UL) or P(UL|6)*P(6)
-P_6_and_unloaded = p_6_given_unloaded * frequency_unloaded
+p_6_and_unloaded = p_6_given_unloaded * frequency_unloaded
+
+
+## probability not 6 and loaded 
+## P(N6|L)*P(L) or P(L|N6)*P(N6)
+p_not_6_and_loaded = p_not_6_given_loaded * frequency_loaded
+
+## probability not 6 and unloaded 
+## P(N6|UL)*P(UL) or P(UL|N6)*P(N6)
+p_not_6_and_unloaded = p_not_6_given_unloaded * frequency_unloaded
 
 ```
 
 ## Including Plots
 
-You can also embed plots, for example:
+You pick up one die and with it roll:
+
+2 3 2 6 3 5 6 2 6 6 2 6 6 2 3 6 6 6 5 6 6 5 6 6 6 6 6 4 6 3 3 3 6 6 5 6 6
+
+Make a graph of the posterior probability that you have picked up a loaded die as a function of the number of times you have rolled the die.
+
+-   If the roll value is NOT equal to 6, calculate P(L\|N6)
+
+-   If the roll value is equal to 6 calculate P(L\|6)
 
 ```{r pressure, echo=FALSE}
-plot(pressure)
+rolls <-c(2,3,2,6,3,5,6,2,6,6,2,6,6,2,3,6,6,6,5,6,6,5,6,6,6,6,6,4,6,3,3,3,6,6,5,6,6)
+
+priors <- c(.01,.99) ## our belief aboout the frequency of fair die and frequency of unfair die
+prob6 <- vector()
+
+for (i in 1:length(rolls)){
+  prob6[i] <- priots[1] ## we want to plot the probability that the die is loaded
+  
+  prob_unloaded_given_ <- if (rolls[i] != 6){(p_not_6_given_loaded * priors[1]) / p_not_6_and_unloaded}
+  
+}
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
