@@ -1,0 +1,49 @@
+---
+title: "lab2"
+output: html_document
+date: "2026-02-03"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Probability Die is loaded given the number rolled
+
+(1) You walk into the “occasionally dishonest casino” with prior probabilities and likelihoods set to the values in slides 21-25 of lecture #5. (that is, a “loaded” die has a 10% chance of getting a 1-5 and a 50% chance of getting a 6 but 99% of the dice are fair)
+
+![](images/clipboard-1559043268.png)
+
+```{r casino}
+## frequencies
+frequency_fair = .99
+frequency_loaded = .01
+
+## for loaded die
+p_6_given_loaded = .5 # P(six|D_loaded)
+p_not_6_given_loaded = .5 # P(six_c|D_loaded)
+
+## for an unloaded die
+p_not_6_given_unloaded = 5/6 # P(six|D_unloaded)
+p_6_given_unloaded = 1/6 # P(six_c|D_unloaded)
+
+
+## probability 6 and loaded 
+## P(6|L)*P(L) or P(L|6)*P(6)
+P_6_and_loaded = p_6_given_loaded * frequency_loaded
+
+## probability 6 and unloaded 
+## P(6|UL)*P(UL) or P(UL|6)*P(6)
+P_6_and_unloaded = p_6_given_unloaded * frequency_unloaded
+
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
