@@ -62,13 +62,19 @@ Make a graph of the posterior probability that you have picked up a loaded die a
 ```{r pressure, echo=FALSE}
 rolls <-c(2,3,2,6,3,5,6,2,6,6,2,6,6,2,3,6,6,6,5,6,6,5,6,6,6,6,6,4,6,3,3,3,6,6,5,6,6)
 
-priors <- c(.01,.99) ## our belief aboout the frequency of fair die and frequency of unfair die
+priors <- c(.01,.99) ## our belief aboout the frequency of unloaded die and frequency of loaded die
 prob6 <- vector()
 
 for (i in 1:length(rolls)){
-  prob6[i] <- priots[1] ## we want to plot the probability that the die is loaded
+  prob6[i] <- priors[1] ## we want to plot the probability that the die is loaded
   
-  prob_unloaded_given_ <- if (rolls[i] != 6){(p_not_6_given_loaded * priors[1]) / p_not_6_and_unloaded}
+  prob_unloaded <- if (rolls[i] != 6){(p_not_6_given_unloaded * priors[1]) / (p_not_6_and_loaded + p_not_6_and_unloaded)}else{(p_6_given_unloaded * priors[1]) / (p_6_and_loaded + p_6_and_unloaded)} ## calculate the probability of the die being unloaded given us not rolling a 6 (P(UL|N6)) or not rolling a 6 (P(UL|6)) We do this based
+  
+  prob_loaded <- if (rolls[i] != 6){(p_not_6_given_loaded * priors[2])/(p_not_6_and_loaded + p_not_6_and_unloaded)}else{(p_6_given_loaded * priors[2]) / (p_6_and_loaded + p_6_and_loaded)}
+  
+  priors[1] <- prob_unloaded
+  priors[2] <- prob_loaded
+  
   
 }
 ```
