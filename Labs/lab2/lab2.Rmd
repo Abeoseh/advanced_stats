@@ -2,6 +2,7 @@
 title: "lab2"
 output: html_document
 date: "2026-02-03"
+author: Abeoseh Flemister
 ---
 
 ```{r setup, include=FALSE}
@@ -47,8 +48,6 @@ p_not_6_and_unloaded = p_not_6_given_unloaded * frequency_unloaded
 
 ```
 
-## Including Plots
-
 You pick up one die and with it roll:
 
 2 3 2 6 3 5 6 2 6 6 2 6 6 2 3 6 6 6 5 6 6 5 6 6 6 6 6 4 6 3 3 3 6 6 5 6 6
@@ -90,7 +89,7 @@ for (i in 1:length(rolls)){
   priors[1] <- prob_loaded
   priors[2] <- prob_unloaded
   
-  print(priors[1])
+  # print(priors[1])
   
   title <- paste(title, rolls[i], sep="")
   # plot(1:i, probloaded, main = title, ylim=c(0,1), xlim=c(1,length(rolls)+1))
@@ -233,47 +232,7 @@ bayesian_update <- function(rolls, priors, p_loaded, p_unloaded, wanted_prob){
   
   for (i in 1:length(rolls)){
   
-    probloadedVec[i] <- if(wanted_prob == 1){priors[1]}else{priors[1]} ## we want to plot the probability that the die is loaded
-    # probloadedVec[i] <- priors[1]
-    
-    ## calculate the probability of the die being loaded given us not rolling a 6 (P(L|N6)) or not rolling a 6 (P(L|6))
-    prob_loaded <- if (rolls[i] == 1){
-      (p_loaded[1] * priors[1])/( (p_loaded[1] * priors[1]) + (p_unloaded[1] * priors[2]) )
-        }else{
-        (p_loaded[2] * priors[1]) / ( (p_loaded[2] * priors[1]) + (p_unloaded[2] * priors[2]) )} 
-    
-    
-    ## calculate the probability of the die being unloaded given us not rolling a 6 (P(UL|N6)) or not rolling a 6 (P(UL|6))   
-    prob_unloaded <- if (rolls[i] == 1){
-      (p_unloaded[1] * priors[2]) / ( (p_loaded[1] * priors[1]) + (p_unloaded[1] * priors[2]) )}else{
-        (p_unloaded[2] * priors[2]) / ( (p_loaded[2] * priors[1]) + (p_unloaded[2] * priors[2]) )} 
-    
-  
-      
-    priors[1] <- prob_loaded
-    priors[2] <- prob_unloaded
-    
-    # print(paste(rolls[i], ))
-    
-    title <- paste(title, rolls[i], sep="")
-    # plot(1:i, probloaded, main = title, ylim=c(0,1), xlim=c(1,length(rolls)+1))
-    # Sys.sleep(1)
-    if (probloadedVec[i] >=.99999){
-      return(probloadedVec)
-      break}
-  }
-  # plot(1:i, probloadedVec, main = title, ylim=c(0,1), xlim=c(1,length(rolls)+1))
-
-}
-```
-
-```{r}
-bayesian_update <- function(rolls, priors, p_loaded, p_unloaded, wanted_prob){
-  probloadedVec <- vector()
-  
-  for (i in 1:length(rolls)){
-  
-    probloadedVec[i] <- if(wanted_prob == 1){priors[1]}else{priors[1]} ## we want to plot the probability that the die is loaded
+    probloadedVec[i] <- if(wanted_prob == 1){priors[1]}else{priors[2]} ## we want to plot the probability that the die is loaded
     # probloadedVec[i] <- priors[1]
     
     ## calculate the probability of the die being loaded given us not rolling a 6 (P(L|N6)) or not rolling a 6 (P(L|6))
@@ -308,6 +267,8 @@ bayesian_update <- function(rolls, priors, p_loaded, p_unloaded, wanted_prob){
 
 Run simulations for a patient with the disease. About how many times on average must the test be repeated to achieve the hospital’s requirements?
 
+**Around 15 times.**
+
 ```{r}
 
 priors <- c(.001,.999) ## our belief aboout the frequency of no disease and frequency of disease ... loaded vs unloaded
@@ -329,6 +290,8 @@ sum(bayes_experiments)/length(bayes_experiments)
 
 Repeat the simulations for a patient without the disease. About how many times on average must the test be repeated to achieve the hospital’s requirements?
 
+**Around 4 times.**
+
 ```{r}
 
 priors <- c(.001,.999) ## our belief aboout the frequency of no disease and frequency of disease ... loaded vs unloaded
@@ -338,11 +301,35 @@ p_nodisease <- c(.84, .16) # p_negative_given_no_disease, p_positive_given_no_di
 # p_loaded <- c(0.5, 0.5) # p_not_6_given_loaded, p_6_given_loaded
 # p_unloaded <- c(5/6, 1/6) # p_not_6_given_unloaded, p_6_given_unloaded
 
-bayes_experiments = vector(length = 10000)
+bayes_experiments = vector(length = 1)
 for (i in 1:length(bayes_experiments)){
   outcome <- simulateDisease(1000,p_nodisease)
   bayes_experiments[i] <- length(bayesian_update(outcome, priors, p_disease, p_nodisease, 2))
 }
 
 sum(bayes_experiments)/length(bayes_experiments)
+```
+
+(3) The hospital plans to run the test on one million patients per year. At a cost of \$1 per test, about how much should the hospital budget to run these tests? (That is to say, for a million patients, how many tests can the hospital anticipate running?)
+
+    -   patient size: 1,000,000
+
+    -   of the 1,000,000 0.1% have the disease
+
+        -   A positive patient must take the test \~15 times for 99.999% accuracy
+
+    -   Of the 1,000,000 99.9% don't have the disease
+
+        -   A negative patient must take the test \~4 times for 99.999% accuracy
+
+    **It would cost 4,011,000 dollars**
+
+```{r}
+
+patients = 1000000
+positive_patients = patients * .001
+negative_patients = patients * .999
+
+cost = (negative_patients * 4) + (positive_patients * 15)
+cost
 ```
