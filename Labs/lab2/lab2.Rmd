@@ -314,7 +314,7 @@ sum(bayes_experiments)/length(bayes_experiments)
 
     -   patient size: 1,000,000
 
-    -   of the 1,000,000 0.1% have the disease
+    -   Of the 1,000,000 0.1% have the disease
 
         -   A positive patient must take the test \~15 times for 99.999% accuracy
 
