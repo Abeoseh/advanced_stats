@@ -1,0 +1,296 @@
+---
+title: "lab3"
+author: "Abeoseh Flemister"
+date: "2026-02-12"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1A
+
+Plot the prior graph for a situation for a coin where the prior belief for p(head) is represented by the following R code :
+
+```         
+    dexp(x, rate =5) / 0.9932621
+```
+
+for values of 0 \<= x \<= 1 and 0 otherwise. (We choose the denominator to make the Integral between 0 and 1 sum to 1).
+
+```{r, echo=FALSE}
+x = seq(0,1,.01)
+priors = dexp(x, rate=5)/0.9932621
+
+plot(x,priors)
+barplot(priors)
+```
+
+## 1B
+
+Calculate the posterior graph with both the Metropolis algorithm and grid approximation for a case with 14 heads and 10 tails (where x = prob(head)) . Show the two methods roughly agree. Compare these to a plot with a posterior for new data of 14 heads and 10 tails with a prior with beta(40,40).
+
+(So for the observation of 14 heads and 10 tails you will end up with a graph with three plots superimposed: (i) the Metropolis algorithm with an exp prior, (ii) grid approximation with an exp prior and (iii) exact analytical solution from a beta(40,40) prior make the plots different colors so you can visualize them…)
+
+```{r}
+
+
+metropolis <- function(iterations, new_data, starting_prob, step_size = .01){
+    current_prob = starting_prob
+    posteriorDist = vector()
+  ## starting_prob is of success, failure
+  for(i in 1:iterations){
+    
+    ## calculate the probability of the current probability (prior or p(current_prob)) * the likelihood of X heads given the data (p(new_data | current_prob))
+    # pCurrent = dexp(current_prob, rate=5)/0.9932621 * dbinom(new_data[1], sum(new_data), current_prob)
+    pCurrent = dbeta(current_prob, 40,40) * dbinom(new_data[1], sum(new_data), current_prob)
+    
+    new_prob = current_prob + rnorm(1, mean = 0, sd = step_size)
+    new_prob = min(new_prob, 1) ## in case new_prob is above 1
+    new_prob = max(new_prob, 0) ## in case new_prob is below 0
+    
+    ## calculate the probability of a new probability (prior or p(new_prob)) * the likelihood of X heads given the data (p(new_data | new_prob))
+    # pNew = dexp(new_prob, rate=5)/0.9932621 * dbinom(new_data[1], sum(new_data), new_prob)
+    pNew = dbeta(new_prob, 40,40) * dbinom(new_data[1], sum(new_data), new_prob)
+    
+    
+
+    ratio = pNew / pCurrent
+    
+    if (ratio > 1 || ratio >= runif(1)){current_prob = new_prob} ## update the current prob
+    
+    posteriorDist[i]  = current_prob
+    
+    
+    # if(i %% 100 == 0){
+    #   myHist = hist(posteriorDist, breaks = 200, plot = F)
+    #   plot(myHist$mids, myHist$counts/i, main = paste("iteration", i))
+    #   Sys.sleep(.1)
+    # }
+    
+  }
+  return(posteriorDist) }
+
+
+
+```
+
+```{r}
+
+
+grid_integration <- function(numBreaks, alpha_beta, new_data){
+  posteriorDist = vector(length = numBreaks)
+  NumRectangles = seq(0,1, 1/numBreaks)
+  i = 1
+  sum = 0
+  delta <- 1/(numBreaks - 1)
+  
+  for(rectangle in NumRectangles){
+    # posteriorDist[i] <- dexp(rectangle, rate=5)/0.9932621 * dbinom(new_data[1], sum(new_data), rectangle)
+    posteriorDist[i] <- dbeta(rectangle, 40,40) * dbinom(new_data[1], sum(new_data), rectangle)
+    
+    # sum = sum + posteriorDist[i]
+    i = i + 1
+  }
+
+  return(posteriorDist/sum(posteriorDist))}
+
+
+```
+
+```{r}
+
+iterations = 30000
+new_data = c(14,10)
+starting_prob = 0.5
+metropolis_points = metropolis(iterations = iterations, new_data = new_data, starting_prob = starting_prob, step_size = .01)
+
+numBreaks = 1000
+alpha_beta = c(40,40)
+new_data = c(14,10)
+
+grid_points = grid_integration(numBreaks = numBreaks, alpha_beta = alpha_beta, new_data = new_data)
+
+alpha_beta = c(40,40)
+new_data = c(14,10)
+
+
+beta_dist = dbeta(seq(0,1,1/numBreaks), alpha_beta[1]+new_data[1], alpha_beta[2]+new_data[2])
+
+
+plot(seq(0,1,1/numBreaks), grid_points, col = "blue")
+# myHist = hist(metropolis_points, breaks = seq(0,1,1/numBreaks), plot = F) ## will make the metropolis lay on the grid_points
+myHist = hist(metropolis_points, breaks = 200, plot = F)
+points(myHist$mids, myHist$counts/iterations)
+dbetasum <- sum(dbeta(myHist$mids, 40+14,40+10))
+lines(myHist$mids, dbeta(myHist$mids, 40+14,40+10)/dbetasum, col = "red")
+lines(seq(0,1,1/numBreaks), beta_dist/sum(beta_dist), col = "green")
+
+
+
+# p_grid <- seq(0, 1, length.out = length(grid_points))
+# beta_curve <- dbeta(
+#   p_grid,
+#   alpha_beta[1] + new_data[1],
+#   alpha_beta[2] + new_data[2]
+# )
+# 
+# beta_curve <- beta_curve / sum(beta_curve)
+# 
+# plot(p_grid, grid_points, type = "l", lwd = 2,
+#      xlab = "p", ylab = "Posterior",
+#      main = "Posterior Comparison")
+# 
+# lines(p_grid, beta_curve, lwd = 2, lty = 2)
+# 
+# hist(metropolis_points, probability = TRUE, breaks = 200,
+#      col = rgb(0,0,1,0.2), border = NA, add = TRUE)
+# 
+# legend("topright",
+#        legend = c("Grid", "Beta (analytic)", "Metropolis"),
+#        lty = c(1,2,NA),
+#        lwd = c(2,2,NA),
+#        pch = c(NA, NA, 15),
+#        pt.cex = 2,
+#        col = c("black","black", rgb(0,0,1,0.2)))
+
+```
+
+```{r}
+metropolis <- function(iterations, new_data, starting_prob, step_size = .01){
+    current_prob = starting_prob
+    posteriorDist = vector()
+  ## starting_prob is of success, failure
+  for(i in 1:iterations){
+    
+    ## calculate the probability of the current probability (prior or p(current_prob)) * the likelihood of X heads given the data (p(new_data | current_prob))
+    pCurrent = dexp(current_prob, rate=5)/0.9932621 * dbinom(new_data[1], sum(new_data), current_prob)
+    # pCurrent = dbeta(current_prob, 40,40) * dbinom(new_data[1], sum(new_data), current_prob)
+    
+    new_prob = current_prob + rnorm(1, mean = 0, sd = step_size)
+    new_prob = min(new_prob, 1) ## in case new_prob is above 1
+    new_prob = max(new_prob, 0) ## in case new_prob is below 0
+    
+    ## calculate the probability of a new probability (prior or p(new_prob)) * the likelihood of X heads given the data (p(new_data | new_prob))
+    pNew = dexp(new_prob, rate=5)/0.9932621 * dbinom(new_data[1], sum(new_data), new_prob)
+    # pNew = dbeta(new_prob, 40,40) * dbinom(new_data[1], sum(new_data), new_prob)
+    
+    
+
+    ratio = pNew / pCurrent
+    
+    if (ratio > 1 || ratio >= runif(1)){current_prob = new_prob} ## update the current prob
+    
+    posteriorDist[i]  = current_prob
+    ## current_prob is the metropolis algorithm's guess about the posterior
+
+    
+  }
+  return(posteriorDist) }
+```
+
+```{r}
+grid_integration <- function(numBreaks, alpha_beta, new_data){
+  posteriorDist = vector(length = numBreaks)
+  NumRectangles = seq(0,1, 1/numBreaks)
+  i = 1
+  sum = 0
+  delta <- 1/(numBreaks)
+  
+  for(rectangle in NumRectangles){
+    posteriorDist[i] <- delta * dexp(rectangle, rate=5)/0.9932621 * dbinom(new_data[1], sum(new_data), rectangle)
+    # posteriorDist[i] <- dbeta(rectangle, 40,40) * dbinom(new_data[1], sum(new_data), rectangle)
+    
+    # sum = sum + posteriorDist[i]
+    i = i + 1
+  }
+  # print(sum)
+  # print(posteriorDist)
+  return(posteriorDist/sum(posteriorDist))}
+```
+
+The posterior I am estimating is the p(p heads \| heads) or in English the probability of each probability being correct given I observe some number of heads
+
+[**Function outputs**]{.underline}
+
+In the grid algorithm, `posteriorDist/sum(posteriorDist)` gives me discrete estimated **probabilities** of the posterior. The granularity of the discrete probability is determined by the rectangle width.
+
+In the metropolis algorithm, `posteriorDist` is a guess at the posterior.
+
+The output of making `metropolis_points` a histogram `myHist <- hist(metropolis_points, breaks = seq(0,1, 1/numBreaks), plot = FALSE)` gives:
+
+-   `myHist$mids` → the midpoints of each bin
+
+<!-- -->
+
+-   `myHist$counts` → number of posterior estimates falling in each bin
+
+-   `myHist$counts / length(metropolis_points)` gives bin probabilities.
+
+    Why???
+
+    -   Please note that `sum(myHist$counts)` gives the same answer as `length(metropolis_points)` this is because we are breaking metropolis points into bins
+
+        -   To understand how we get probabilities, imagine I have `c(4,4,4,10,1,1)` which I plot with `hist(c(4,4,4,10,1,1), breaks = seq(1,10,1))`
+
+            | hist\$breaks (midpoint or median value in the range) | counts (amount of points which fall into each bin) | Probability of the most likely value being within each bin (note there are 6 observations) |
+            |----|----|----|
+            | 1-2 (1.5) | 2 | 2/6 |
+            | 2-3 (2.5) | 0 |  |
+            | 3-4 (3.5) | 3 | 3/6 most of the values fall in this bin. This is the most probable value. |
+            | 4-5 (4.5) | 0 |  |
+            | 5-6 (5.5) | 0 |  |
+            | 6-7 (6.5) | 0 |  |
+            | 7-8 (7.5) | 0 |  |
+            | 8-9 (8.5) | 0 |  |
+            | 9-10 (9.5) | 1 | 1/6 |
+
+Imagine we plotted
+
+`hist(c(4,4,4,10,1,1), breaks = c(1,5,10))`
+
+| hist\$breaks (midpoint or median value in the range) | counts (amount of points which fall into each bin) | Probability of the most likely value being within each bin (note there are 6 observations) |
+|----|----|----|
+| 1-5 (3) | 5 | 5/6 |
+| 5-10 (7.5) | 1 | 1/6 |
+
+So, the probability of the underlying value is approximately the same. Note that from the first plot with 10 breaks the midpoint of the most probable value is 3.5. If we decrease the number of breaks to 3 we see that the most likely value is (from the midpoint) is now 3. But notice that the probability of the most likely value value being within each bin **increased** when we decreased the number of breaks (increased bin size). Since with only 3 breaks, bin 1 captures the two 1's and three 4's.
+
+[**How to plot metropolis and grid on the same scale**]{.underline}
+
+I need to ensure the number of rectangles (bins) I make for the grid algorithm is the same as the number of bins I make when making `metropolis_points` a histogram. Since the way metropolis works is this that less likely values of the posterior (the value I am trying to estimate) will be visited less. This means when I make a histogram of the values the metropolis algorithm visited when trying to determine the posterior, the values which are visited more (the likely posterior) will have more points per bin represented by taller bins.
+
+So, the issue lays with bin width, or how much I "group" likely posteriors, where smaller bins (ex 1000) will be more precise than larger bins (ex 200) for the same reason that I need smaller rectangles (meaning more rectangles) to calculate a more precise posterior with grid algorithm and why for integrals I want a smaller delta x value for Riemann Sums.
+
+```{r}
+iterations = 30000
+new_data = c(14,10)
+starting_prob = 0.5
+metropolis_points = metropolis(iterations = iterations, new_data = new_data, starting_prob = starting_prob, step_size = .01)
+
+numBreaks = 1000
+alpha_beta = c(40,40)
+new_data = c(14,10)
+
+grid_points = grid_integration(numBreaks = numBreaks, alpha_beta = alpha_beta, new_data = new_data)
+
+alpha_beta = c(40,40)
+new_data = c(14,10)
+
+
+beta_dist = dbeta(seq(0,1,1/numBreaks), alpha_beta[1]+new_data[1], alpha_beta[2]+new_data[2])
+
+myHist <- hist(metropolis_points, breaks = seq(0,1, 1/numBreaks), plot = FALSE)
+plot(seq(0,1,1/numBreaks), grid_points, col = "blue")
+points(myHist$mids, myHist$counts/iterations) ## or myHist$counts/sum(myHist$counts)
+
+# bw <- diff(myHist$breaks)[1]
+# dens <- myHist$counts / (length(posteiorDist) * bw)
+# plot(myHist$mids, dens)
+# lines(seq(0,1,1/numBreaks), grid_points, col="red", lwd=2)
+
+# dbetasum <- sum(dbeta(myHist$mids, 40+14,40+10))
+# lines(myHist$mids, dbeta(myHist$mids, 40+14,40+10)/dbetasum, col = "red")
+# lines(seq(0,1,1/numBreaks), beta_dist/sum(beta_dist), col = "green")
+```
