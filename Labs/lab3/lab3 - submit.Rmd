@@ -1,0 +1,168 @@
+---
+title: "lab3"
+author: "Abeoseh Flemister"
+date: "2026-02-12"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1A
+
+Plot the prior graph for a situation for a coin where the prior belief for p(head) is represented by the following R code :
+
+```         
+    dexp(x, rate =5) / 0.9932621
+```
+
+for values of 0 \<= x \<= 1 and 0 otherwise. (We choose the denominator to make the Integral between 0 and 1 sum to 1).
+
+```{r, echo=FALSE}
+x = seq(0,1,.01)
+priors = dexp(x, rate=5)/0.9932621
+
+plot(x,priors)
+barplot(priors)
+```
+
+## 1B
+
+Calculate the posterior graph with both the Metropolis algorithm and grid approximation for a case with 14 heads and 10 tails (where x = prob(head)) . Show the two methods roughly agree. Compare these to a plot with a posterior for new data of 14 heads and 10 tails with a prior with beta(40,40).
+
+(So for the observation of 14 heads and 10 tails you will end up with a graph with three plots superimposed: (i) the Metropolis algorithm with an exp prior, (ii) grid approximation with an exp prior and (iii) exact analytical solution from a beta(40,40) prior make the plots different colors so you can visualize them…)
+
+```{r}
+metropolis <- function(iterations, new_data, starting_prob, step_size = .01){
+    current_prob = starting_prob
+    posteriorDist = vector()
+  ## starting_prob is of success, failure
+  for(i in 1:iterations){
+    
+    ## calculate the probability of the current probability (prior or p(current_prob)) * the likelihood of X heads given the data (p(new_data | current_prob))
+    pCurrent = dexp(current_prob, rate=5)/0.9932621 * dbinom(new_data[1], sum(new_data), current_prob)
+
+    new_prob = current_prob + rnorm(1, mean = 0, sd = step_size)
+    new_prob = min(new_prob, 1) ## in case new_prob is above 1
+    new_prob = max(new_prob, 0) ## in case new_prob is below 0
+    
+    ## calculate the probability of a new probability (prior or p(new_prob)) * the likelihood of X heads given the data (p(new_data | new_prob))
+    pNew = dexp(new_prob, rate=5)/0.9932621 * dbinom(new_data[1], sum(new_data), new_prob)
+
+    
+
+    ratio = pNew / pCurrent
+    
+    if (ratio > 1 || ratio >= runif(1)){current_prob = new_prob} ## update the current prob
+    
+    posteriorDist[i]  = current_prob
+    ## current_prob is the metropolis algorithm's guess about the posterior
+
+    
+  }
+  return(posteriorDist) }
+```
+
+```{r}
+grid_integration <- function(numBreaks, alpha_beta, new_data){
+  posteriorDist = vector(length = numBreaks)
+  NumRectangles = seq(0,1, 1/numBreaks)
+  i = 1
+  sum = 0
+  delta <- 1/(numBreaks)
+  
+  for(rectangle in NumRectangles){
+    posteriorDist[i] <- dexp(rectangle, rate=5)/0.9932621 * dbinom(new_data[1], sum(new_data), rectangle)
+
+    i = i + 1
+  }
+
+  return(posteriorDist)}
+```
+
+```{r}
+iterations = 30000
+new_data = c(14,10)
+starting_prob = 0.5
+
+## calculating the posteror using metropolis algorithm
+metropolis_points = metropolis(iterations = iterations, new_data = new_data, starting_prob = starting_prob, step_size = .01)
+
+numBreaks = 1000
+alpha_beta = c(40,40)
+new_data = c(14,10)
+
+## calculate the posterior using the grid algorithm
+
+grid_points = grid_integration(numBreaks = numBreaks, alpha_beta = alpha_beta, new_data = new_data)
+
+alpha_beta = c(40,40)
+new_data = c(14,10)
+
+## calculate the posterior using the beta distribution
+beta_dist = dbeta(seq(0,1,1/numBreaks), alpha_beta[1]+new_data[1], alpha_beta[2]+new_data[2])
+
+
+## plot the probability of each the posterior values being correct
+plot( seq(0,1,1/numBreaks), grid_points/sum(grid_points), col = "blue", ylim = c(0,max((beta_dist*(1/numBreaks)))+0.001) )
+myHist <- hist(metropolis_points, breaks = seq(0,1, 1/numBreaks), plot = FALSE)
+points(myHist$mids, myHist$counts/iterations) ## or myHist$counts/sum(myHist$counts)
+lines(seq(0,1,1/numBreaks), (beta_dist*(1/numBreaks)) , col="limegreen")
+
+
+### get the most probable posterior:
+## metropolis:
+print(paste("most probable posterior from metropolis is",myHist$mids[which.max(myHist$counts/iterations)]))
+print(paste("most probable posterior from grid is", seq(0,1, 1/numBreaks)[which.max(grid_points/sum(grid_points))]))
+print(paste("most probable posterior from dbeta is",seq(0,1,1/numBreaks)[which.max(beta_dist*(1/numBreaks))]))
+
+## in total we observed 14 + 39 heads and 10+39 tails
+print(paste("the actual most probable posterior is", (14+39)/(14+39+10+39) ))
+
+```
+
+## 1C
+
+Repeat the above calculation but for a case of 583 heads and 417 tails. (You may need to adjust your model step parameters to try and get the grid and Metropolis graphs to match up). How do the three posterior curves relate to each other now? Why does this plot look different than the plot in (1B)?
+
+```{r}
+
+iterations = 30000
+new_data = c(583,417)
+starting_prob = 0.5
+
+## calculating the posteror using metropolis algorithm
+metropolis_points = metropolis(iterations = iterations, new_data = new_data, starting_prob = starting_prob, step_size = .01)
+
+numBreaks = 1000
+alpha_beta = c(40,40)
+
+## calculate the posterior using the grid algorithm
+
+grid_points = grid_integration(numBreaks = numBreaks, alpha_beta = alpha_beta, new_data = new_data)
+
+
+## calculate the posterior using the beta distribution
+beta_dist = dbeta(seq(0,1,1/numBreaks), alpha_beta[1]+new_data[1], alpha_beta[2]+new_data[2])
+
+
+## plot the probability of each the posterior values being correct
+plot(seq(0,1,1/numBreaks), grid_points/sum(grid_points), col = "blue")
+myHist <- hist(metropolis_points, breaks = seq(0,1, 1/numBreaks), plot = FALSE)
+points(myHist$mids, myHist$counts/iterations) ## or myHist$counts/sum(myHist$counts)
+lines(seq(0,1,1/numBreaks), (beta_dist*(1/numBreaks)) , col="limegreen")
+
+
+### get the most probable posterior:
+## metropolis:
+print(paste("most probable posterior from metropolis is",myHist$mids[which.max(myHist$counts/iterations)]))
+print(paste("most probable posterior from grid is", seq(0,1, 1/numBreaks)[which.max(grid_points/sum(grid_points))]))
+print(paste("most probable posterior from dbeta is",seq(0,1,1/numBreaks)[which.max(beta_dist*(1/numBreaks))]))
+
+## in total we observed 14 + 39 heads and 10+39 tails
+print(paste("the actual most probable posterior is", (583+39)/(583+39+417+39) ))
+
+```
+
+After adding more data points, the maximum probability of the posterior increased. The spread in the data also decreased.
