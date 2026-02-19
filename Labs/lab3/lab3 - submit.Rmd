@@ -2,7 +2,9 @@
 title: "lab3"
 author: "Abeoseh Flemister"
 date: "2026-02-12"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -173,4 +175,6 @@ print(paste("the actual most probable posterior is", (583+39)/(583+39+417+39) ))
 
 ```
 
-After adding more data points, the maximum probability of the posterior increased. The spread the possible probability also decreased as the alogirthms became more likely about the actual value of the posterior.
+### Summary
+
+**The maximum probability of the posterior before adding more data points was 0.004 for grid, 0.005 for metropolis, and 0.008 for dbeta. After adding more datapoints the maximum probability of the posterior was 0.03 for grid, 0.03 for metropolis, and 0.03 for dbeta. This means, for all algorithms, after adding more data points the maximum probability of the posterior increased. The spread the possible probability also decreased as the alogrithms became more likely about the actual value of the posterior.**
