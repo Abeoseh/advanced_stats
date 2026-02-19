@@ -105,6 +105,13 @@ beta_dist = dbeta(seq(0,1,1/numBreaks), alpha_beta[1]+new_data[1], alpha_beta[2]
 
 
 
+## plot the probability of each the posterior values being correct
+plot( seq(0,1,1/numBreaks), grid_points/sum(grid_points), col = "blue", ylim = c(0,max((beta_dist*(1/numBreaks)))+0.001) )
+myHist <- hist(metropolis_points, breaks = seq(0,1, 1/numBreaks), plot = FALSE)
+points(myHist$mids, myHist$counts/iterations) ## or myHist$counts/sum(myHist$counts)
+lines(seq(0,1,1/numBreaks), (beta_dist*(1/numBreaks)) , col="limegreen")
+
+
 
 
 ### get the most probable posterior:
@@ -115,14 +122,6 @@ print(paste("most probable posterior from dbeta is",seq(0,1,1/numBreaks)[which.m
 
 ## in total we observed 14 + 39 heads and 10+39 tails
 print(paste("the actual most probable posterior is", (14+39)/(14+39+10+39) ))
-
-
-
-## plot the probability of each the posterior values being correct
-plot( seq(0,1,1/numBreaks), grid_points/sum(grid_points), col = "blue", ylim = c(0,max((beta_dist*(1/numBreaks)))+0.001) )
-myHist <- hist(metropolis_points, breaks = seq(0,1, 1/numBreaks), plot = FALSE)
-points(myHist$mids, myHist$counts/iterations) ## or myHist$counts/sum(myHist$counts)
-lines(seq(0,1,1/numBreaks), (beta_dist*(1/numBreaks)) , col="limegreen")
 
 ```
 
@@ -152,6 +151,16 @@ beta_dist = dbeta(seq(0,1,1/numBreaks), alpha_beta[1]+new_data[1], alpha_beta[2]
 
 
 
+
+## plot the probability of each the posterior values being correct
+plot(seq(0,1,1/numBreaks), grid_points/sum(grid_points), col = "blue")
+myHist <- hist(metropolis_points, breaks = seq(0,1, 1/numBreaks), plot = FALSE)
+points(myHist$mids, myHist$counts/iterations) ## or myHist$counts/sum(myHist$counts)
+lines(seq(0,1,1/numBreaks), (beta_dist*(1/numBreaks)) , col="limegreen")
+
+
+
+
 ### get the most probable posterior:
 ## metropolis:
 print(paste("most probable posterior from metropolis is",myHist$mids[which.max(myHist$counts/iterations)]))
@@ -162,14 +171,6 @@ print(paste("most probable posterior from dbeta is",seq(0,1,1/numBreaks)[which.m
 print(paste("the actual most probable posterior is", (583+39)/(583+39+417+39) ))
 
 
-
-
-
-## plot the probability of each the posterior values being correct
-plot(seq(0,1,1/numBreaks), grid_points/sum(grid_points), col = "blue")
-myHist <- hist(metropolis_points, breaks = seq(0,1, 1/numBreaks), plot = FALSE)
-points(myHist$mids, myHist$counts/iterations) ## or myHist$counts/sum(myHist$counts)
-lines(seq(0,1,1/numBreaks), (beta_dist*(1/numBreaks)) , col="limegreen")
 ```
 
 After adding more data points, the maximum probability of the posterior increased. The spread the possible probability also decreased as the alogirthms became more likely about the actual value of the posterior.

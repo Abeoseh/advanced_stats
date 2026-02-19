@@ -1,3 +1,2 @@
 https://www.cbioportal.org/study/summary?id=mixed_allen_2018
 
-https://gdc.cancer.gov/about-data/publications/pancanatlas
