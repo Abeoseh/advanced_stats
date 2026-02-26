@@ -1,0 +1,172 @@
+---
+title: "lab4"
+author: "Abeoseh Flemister"
+date: "2026-02-26"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 
+
+```{r cars}
+annotation <- read.table("./longitdunalRNASeqData/nc101_Annotations.txt", sep = "\t", header = TRUE, row.names = 1)
+datacounts <- read.table("./longitdunalRNASeqData/nc101_scaff_dataCounts.txt", sep = "\t", header = TRUE, row.names = 1)
+```
+
+## (2) On a log10-log10 scale, show a plot of the counts for the two samples “D2_01” and “D2_02”.
+
+Qualitatively, do the biological replicates appear to have similar patterns of gene expression?
+
+**Qualitatively the biological replicates have similar patterns of gene expression since we can draw a roughly straight regression line.**
+
+```{r pressure, echo=FALSE}
+
+plot(log10(datacounts$D2_01), log10(datacounts$D2_02))
+```
+
+## (3) On a log10-log10 scale, plot the variance of all genes (across all genes) vs. the mean (across all genes) with a red line on your graph representing the identity line. Does the mean equal the variance for these samples?
+
+(The commands apply(myT, 1, mean) and apply(myT, 1, var) will be of some use).
+
+**The mean is not exactly equal to the variance which we can see through the deviations from the regression line.**
+
+```{r}
+## If there are all 0s in a row, log10 will be undefined 
+datacounts_filtered = datacounts[apply(datacounts, 1, sum) != 0,]
+means = log10(apply(datacounts_filtered, 1, mean))
+vars = log10(apply(datacounts_filtered, 1, var))
+
+plot(means, vars)
+abline(summary(lm(vars ~ means))$coefficients[1,1], summary(lm(vars ~ means))$coefficients[2,1], col = "red")
+
+```
+
+## (4) Consider the first gene in the spreadsheet (e.g. NC101_00003). Make a two by two contingency table:
+
+|                             | Sequences in D2_01 | Sequences in D2_02 |
+|-----------------------------|--------------------|--------------------|
+| Assigned to NC101_00003     |                    |                    |
+| Not assigned to NC101_00003 |                    |                    |
+
+```{r}
+library(dplyr)
+
+is_NC101_00003 = datacounts %>% select(D2_01, D2_02) %>% filter(row.names(datacounts) == "NC101_00003")
+
+not_NC101_00003 = datacounts %>% select(D2_01, D2_02) %>% filter(row.names(datacounts) != "NC101_00003") %>% apply(2, sum)
+
+fisher.test(rbind(is_NC101_00003, not_NC101_00003))
+```
+
+## (5) Now generate a p-value for all the genes in the spreadsheet from the Fisher test.  Plot out those p-values in a histogram.
+
+-   Are they uniformly distributed? **The p-values are not normally distributed**
+-   Would you expect them to be? **If I were to accept the null hypothesis I would expect the p-values to be uniformally distributed**
+-   Are the p-values more significant, less significant or what we would expect under a uniform distribution? **Since the p-values are not uniformally distributed they are different than what would expect if we were to accept the null hypothesis. Specifically, the low p-values are from cases where the assumptions of the hypergeometric distribution are violated and the high p-values are the from the low abundance genes.**
+
+```{r}
+genes = row.names(datacounts)
+unfilteredpvals = vector(length = length(genes))
+i = 1
+
+for( gene in genes){
+  
+  is_gene = datacounts %>% select(D2_01, D2_02) %>% filter(row.names(datacounts) == gene)
+  
+  not_gene = datacounts %>% select(D2_01, D2_02) %>% filter(row.names(datacounts) != gene) %>% apply(2, sum)
+  
+  unfilteredpvals[i] = fisher.test(rbind(is_gene, not_gene))$p.value
+  
+  i = i + 1
+}
+hist(unfilteredpvals, plot = TRUE, breaks = 10)
+```
+
+-   How does the p-value distribution change if you remove low abundance genes (with for example myT \<- myT[ (myT\$D2_01 + myT\$D2_02 \> 50),]
+    -   Are they uniformly distributed? **The p-values are still not normally distributed**
+    -   Would you expect them to be? **If I were to accept the null hypothesis I would expect the p-values to be uniformally distributed**
+    -   Are the p-values more significant, less significant or what we would expect under a uniform distribution? **Since the p-values are still not uniformally distributed they are different than what would expect if we were to accept the null hypothesis. Specifically, the low p-values are from cases where the assumptions of hypergeometric distribution the are violated.**
+
+```{r}
+datacounts_filtered = datacounts[ (datacounts$D2_01 + datacounts$D2_02 > 50),] 
+genes = row.names(datacounts_filtered)
+filteredpvals = vector(length = length(genes))
+i = 1
+
+for( gene in genes){
+  
+  is_gene = datacounts_filtered %>% select(D2_01, D2_02) %>% filter(row.names(datacounts_filtered) == gene)
+  
+  not_gene = datacounts_filtered %>% select(D2_01, D2_02) %>% filter(row.names(datacounts_filtered) != gene) %>% apply(2, sum)
+  
+  filteredpvals[i] = fisher.test(rbind(is_gene, not_gene))$p.value
+  
+  i = i + 1
+}
+
+
+hist(filteredpvals, plot = TRUE, breaks = 10)
+```
+
+## (6) Add 1 to every value in the table ( with something like myT = myT + 1 ).
+
+-    This is called adding a pseudo-count.
+
+-   Now consider the first gene (NC101_00003 ) again.
+
+-   From the first experiment, calculate expected frequency = p = (\# Assigned to NC101_00003 in D2_01)/total \# of sequences in D2_01)
+
+```{r}
+pseudocount_datacounts <- datacounts %>% select(D2_01, D2_02) + 1
+
+is_NC101_00003 = pseudocount_datacounts %>% select(D2_01) %>% filter(row.names(datacounts) == "NC101_00003") %>% sum()
+
+total_seqs_d1 = pseudocount_datacounts %>% select(D2_01) %>% sum()
+
+expected_frequency = pseudocount_datacounts %>% select(D2_01) %>% filter(row.names(datacounts) == "NC101_00003") / total_seqs_d1
+
+total_seqs_d2 = pseudocount_datacounts %>% select(D2_02) %>% sum()
+
+poisson.test(is_NC101_00003, total_seqs_d2, expected_frequency$D2_01)
+
+
+```
+
+## (7) Repeat the calculation in (6) for every gene in the spreadsheet.  Graph these p-values against the p-values produced in (5) on a log10-log10 plot.  How well do they agree? 
+
+```{r}
+
+pseudocount_datacounts <- datacounts %>% select(D2_01, D2_02) + 1
+
+datacounts_filtered = datacounts[ (datacounts$D2_01 + datacounts$D2_02 > 50),] 
+genes = row.names(pseudocount_datacounts)
+poissonpvals = vector(length = length(genes))
+i = 1
+
+for (gene in genes){
+
+  is_gene = pseudocount_datacounts %>% select(D2_01) %>% filter(row.names(datacounts) == gene) %>% sum()
+  
+  total_seqs_d1 = pseudocount_datacounts %>% select(D2_01) %>% sum()
+  
+  expected_frequency = pseudocount_datacounts %>% select(D2_01) %>% filter(row.names(datacounts) == gene) / total_seqs_d1
+  
+  total_seqs_d2 = pseudocount_datacounts %>% select(D2_02) %>% sum()
+  
+  poissonpvals[i] = poisson.test(is_gene, total_seqs_d2, expected_frequency$D2_01)$p.value
+  
+  i = i + 1
+
+}
+
+hist(poissonpvals, plot = TRUE, breaks = 10)
+```
+
+```{r}
+plot(log10(poissonpvals), log10(unfilteredpvals))
+```
+
+**There is very little agreement between the two tests. However, the assumptions of both tests were violated so the p-values cannot be trusted. The poisson assumes the mean equals the variance which is not true in our dataset.**
