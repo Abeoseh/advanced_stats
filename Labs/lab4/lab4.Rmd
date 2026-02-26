@@ -113,7 +113,7 @@ hist(filteredpvals, plot = TRUE, breaks = 10)
 
 ## (6) Add 1 to every value in the table ( with something like myT = myT + 1 ).
 
--    This is called adding a pseudo-count.
+-   This is called adding a pseudo-count.
 
 -   Now consider the first gene (NC101_00003 ) again.
 
@@ -135,7 +135,7 @@ poisson.test(is_NC101_00003, total_seqs_d2, expected_frequency$D2_01)
 
 ```
 
-## (7) Repeat the calculation in (6) for every gene in the spreadsheet.  Graph these p-values against the p-values produced in (5) on a log10-log10 plot.  How well do they agree? 
+## (7) Repeat the calculation in (6) for every gene in the spreadsheet.  Graph these p-values against the p-values produced in (5) on a log10-log10 plot.  How well do they agree?
 
 ```{r}
 
