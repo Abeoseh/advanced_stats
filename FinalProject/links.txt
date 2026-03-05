@@ -22,8 +22,8 @@ Combine the Acute Leukemias of Ambiguous Lineage (TARGET GDC, 2025)
 and Acute Myeloid Leukemia (TCGA, Firehose Legacy) datasets. 
 
 The Acute Leukemias of Ambiguous Lineage dataset has [Acute] Lymphoid leukemia, NOS
-(233 samples), [Acute] Myeloid leukemia, NOS (15 samples), and [Acute] Myeloid leukemia, 
-NOS (3 samples). NOS means "Not Otherwise Specified".  
+(233 samples), [Acute] Myeloid leukemia, NOS (15 samples), and [Acute] Leukemia, NOS
+(3 samples). NOS means "Not Otherwise Specified".  
 
 The Acute Myeloid Leukemia (TCGA, Firehose Legacy) has 200 samples of 
 Myeloid leukemia, NOS.
