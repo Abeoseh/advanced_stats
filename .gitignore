@@ -1,4 +1,11 @@
 lectures/
+*.docx
+*.pdf
+*.txt
+*.tar.gz
+*.csv
+*.RDataTmp
+*.Rhistory
 FinalProject/alal_target_gdc
 FinalProject/laml_tcga
 FinalProject/*.tar.gz

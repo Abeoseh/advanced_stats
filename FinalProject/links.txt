@@ -2,7 +2,7 @@ All datasets:
 https://www.cbioportal.org/datasets
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-https://www.cbioportal.org/study/summary?id=mixed_allen_2018
+https://www.cbioportal.org/study/summary?id=alal_target_gdc
 Acute Leukemias of Ambiguous Lineage (TARGET GDC, 2025)
 Files to look at:
 alal_target_gdc/data_mrna_seq_read_counts.txt
