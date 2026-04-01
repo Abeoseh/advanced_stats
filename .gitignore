@@ -4,6 +4,7 @@ lectures/
 *.txt
 *.tar.gz
 *.csv
+*.png
 *.RDataTmp
 *.Rhistory
 FinalProject/alal_target_gdc
