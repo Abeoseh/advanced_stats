@@ -21,7 +21,8 @@ keep <- filterByExpr(dge)
 dge <- dge[keep, , keep.lib.sizes=FALSE]
 
 ## 3. Voom transformation and calculation of variance weights
-mm <- model.matrix(~0 + group)
+# mm <- model.matrix(~0 + group)
+mm <- model.matrix(~ group)
 
 
 y <- voom(dge, mm, plot = T)
@@ -31,13 +32,14 @@ fit <- lmFit(y, mm)
 head(coef(fit))
 
 ## comparison between lymphoid leukemia and meyloid leukemia
-contr <- makeContrasts(groupLymphoid_leukemia - groupMyeloid_leukemia, levels = colnames(coef(fit)))
+# contr <- makeContrasts(groupMyeloid_leukemia - groupLymphoid_leukemia, levels = colnames(coef(fit)))
 
 ## estimate contrasts for each gene
-tmp <- contrasts.fit(fit, contr)
+# tmp <- contrasts.fit(fit, contr)
 
 ## Empirical Bayes smoothing of standard errors
-tmp <- eBayes(tmp)
+# tmp <- eBayes(tmp)
+tmp <- eBayes(fit)
 
 ## Write results out
 top.table <- topTable(tmp, sort.by = "P", n = Inf)

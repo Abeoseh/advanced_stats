@@ -18,7 +18,7 @@ geometricMean <- geometricMean <- apply(countsTable, 2, function(x) {
 ratios <- sweep(countsTable, 2, geometricMean, "/")
 size_factors <- apply(ratios, 1, median, na.rm = TRUE) ## median ratio
 
-for( gene in colnames(countsTable) ){
+for( gene in colnames(countsTable)[1] ){
   
   y <- countsTable[, gene]
   
@@ -66,6 +66,8 @@ res_df <- data.frame(
   pvalue = sapply(results, function(x) x$pvalue),
   padj = padj
 )
+
+res_df <- read.csv("csvs/my_DE.csv")
 
 res_df$higher_in <- ifelse(res_df$log2FC > 0, "Myeloid leukemia, NOS", "Lymphoid leukemia, NOS")
 
