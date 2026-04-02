@@ -1,0 +1,182 @@
+---
+title: "lab5"
+author: "Abeoseh Flemister"
+date: "2026-04-02"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+(1)This question uses data from this paper:
+
+<https://science.sciencemag.org/content/347/6217/78>
+
+Variation in cancer risk among tissues can be explained by the number of stem cell divisions.
+
+Science 02 Jan 2015: Vol. 347, Issue 6217, pp. 78-81
+
+```{r cars}
+
+cancer_df <- read.csv(url("https://fodorclasses.github.io/classes/stats2020/cancerRisk.txt"), sep= "\t", header = TRUE)
+
+head(cancer_df)
+```
+
+## Including Plots
+
+On a **log10-log10** scale graph `Lifetime_cancer_risk` (on the y-axis) vs. `CumulativeCellDivisions` (on the x-axis). (This reproduces Fig. 1 from the paper).
+
+```{r pressure, echo=FALSE}
+plot(log10(cancer_df$CumulativeCellDivisions), log10(cancer_df$Lifetime_cancer_risk), xlab = "Cumulative Cell Divisions", ylab = "Lifetime cancer risk")
+```
+
+**(1B):** Using the lm function, fit a linear model with Lifetime_cancer_risk as the Y variable and CumulativeCellDivisions as the x-data. Add the regression line to the plot using the function abline(myLm)  (where myLm is the linear model you created).
+
+```{r}
+
+lm_cancer <- lm(log10(cancer_df$Lifetime_cancer_risk) ~ log10(cancer_df$CumulativeCellDivisions))
+
+# str(summary(lm_cancer))
+# summary(lm_cancer)
+# intercept = summary(lm_cancer)$coefficients[1]
+# intercept
+# slope = summary(lm_cancer)$coefficients[2]
+# slope
+
+plot(log10(cancer_df$CumulativeCellDivisions), log10(cancer_df$Lifetime_cancer_risk), xlab = "Cumulative Cell Divisions", ylab = "Lifetime cancer risk")
+abline(lm_cancer, col="steelblue")
+# abline(a = intercept, b = slope)
+
+```
+
+(**1C):** What is the p-value for the null hypothesis that the slope of the regression between these two variables is zero?  What is the r-squared value of the model?
+
+**The p-value between the null hypothesis that the slope of the regression between lifetime cancer risk and cumulative cell divisions is 5.12e-08. Therefore, I reject the null hypothesis at a p-value of 5.12e-08. Practically, this means I am confident with a 5.12e-08 chance of a false positive, that lifetime cancer risk is dependent on cumulative cell divisions.**
+
+**The R\^2 is 0.643, so even though I am sure at a p-value of 5.12e-08 that lifetime cancer risk is dependent on cumulative cell divisions, the positive correlation between the variables is moderate.**
+
+```{r}
+
+summary(lm_cancer)
+
+
+```
+
+**(1D):** Are the assumptions of constant variance and normal distribution of the residues reasonable for this model?  Justify your answer.
+
+**After log10 transformation, the assumption of constant variance is semi-reasonable since variance from the regession line is roughly equal for all points. On the normal Q-Q plot we can see that the residuals are not entirely normally distributed. Despite this, linear regression is fairly robust against mild deviations from the assumptions. Without log10 transformations, the assumptions of equal variance and normal distributions of the residuals are entirely invalid.**
+
+```{r}
+qqnorm(residuals(lm_cancer))
+
+```
+
+(2) Consider the case-control file for the colorectal adenomas data set that is here:
+
+  <http://afodor.github.io/classes/stats2015/caseControlData.txt>
+
+    A separate file gives obesity (BMI) data for these same subjects:
+
+  <http://afodor.github.io/classes/stats2015/BMI_Data.txt>
+
+For each OTU in the spreadsheet, generate a p-value from linear regression comparing BMI to the   relative abundance of each OTU.    Graph out all the p-values.  Do they appear uniformly distributed? Does the microbial community appear to be influencing body weight in this cohort?  Are any of these associations significant at a 10% false discovery rate?
+
+Hints:  To lookup the ids in the BMI table, you will need to some processing on the “sample” column in the caseControl file.  The following code will convert the a sampleID so that it will match the BMI file.
+
+  \# remove case and control
+
+key \<- sub("case", "", sampleID)
+
+key \<- sub("control", "", key)
+
+\# remove extraneous information from the suffix
+
+key \<- strsplit( key, "\_")[[1]][1]
+
+Also, to get the p-value out of the linear model try:
+
+  anova( myLm)\$"Pr(\>F)"[1]
+
+```{r}
+col_adema <- read.csv(url("http://afodor.github.io/classes/stats2015/caseControlData.txt"), sep = "\t")
+
+col_adema$studyid <- gsub("_.*", "", col_adema$sample)
+
+bmi <- read.csv(url("http://afodor.github.io/classes/stats2015/BMI_Data.txt"), sep = "\t")
+
+bmi_ColAdema <- merge(bmi, col_adema,  by = "studyid")
+bmi_ColAdema$studyid <- NULL
+bmi_ColAdema$sample <- NULL
+
+print(paste("rows in col_adema:", nrow(col_adema), "rows in bmi", nrow(bmi), "rows in bmi_ColAdema", nrow(bmi_ColAdema)))
+
+head(bmi)
+
+head(col_adema)
+
+head(bmi_ColAdema)
+
+
+```
+
+```{r}
+pvals = vector(length = length(bmi_ColAdema)-1)
+i = 1
+
+for ( col in colnames(bmi_ColAdema)[2:length(bmi_ColAdema)] ){ 
+  lm_bmi <- lm( bmi_ColAdema[["bmi"]] ~ bmi_ColAdema[[col]] )
+  # print("done")
+  pvals[i] = anova( lm_bmi)$"Pr(>F)"[1]
+  
+  i = i + 1
+
+}
+
+```
+
+**By chance, approximately 0.05 of the p-values are significant. Therefore, I can conclude that the the positive p-values are by chance.**
+
+```         
+"The porportion of significant p-values is 0.0547619047619048"
+```
+
+**At a p-value of 0.05 I expect 0.05 of the samples to be positive just by chance.**
+
+```{r, echo=FALSE}
+
+print(paste("The porportion of significant p-values is", length(pvals[pvals < 0.05])/length(pvals)))
+
+h <- hist(pvals, breaks = 50, plot = FALSE)
+col = ifelse(h$mids <= 0.05, "green", "red")
+plot(h, col = col)
+```
+
+**None of the p-values that pass the Bonferroni correction, this makes sense since I expected 0.05 of the p-values to be significant by chance which was the case.**
+
+```{r}
+
+FDR_threshold <- 0.05 / length(pvals)
+
+bonferonni_pvals = pvals[pvals <= FDR_threshold]
+
+print(paste(length(bonferonni_pvals), "p-values passed bonferonni correction."))
+
+```
+
+**None of the p-values that pass the benjamin-hochberg correction, this makes sense since I expected 0.05 of the p-values to be significant by chance which was the case.**
+
+```{r}
+
+sorted_pvals <- sort(pvals)
+
+for (i in length(sorted_pvals)){bh_pvals <- length(sorted_pvals * sorted_pvals[i])/i}
+
+print(paste(sum(bh_pvals < 0.05), "p-values were passed benjamin-hochberg correction."))
+
+```
+
+**z**

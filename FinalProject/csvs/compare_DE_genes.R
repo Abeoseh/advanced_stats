@@ -23,8 +23,7 @@ length(intersect_limma_edger)
 length(all_in_common)
 
 
-#### compare mine and limma ####
-## logFC ##
+#### compare logFC ####
 compare_logFC <- function(df1, df2, intersect_vec, logFC1, logFC2,xtitle, ytitle, title){
   
   df1 <- filter(df1, gene %in% intersect_vec) %>% dplyr::select(gene, {{logFC1}})
@@ -32,10 +31,12 @@ compare_logFC <- function(df1, df2, intersect_vec, logFC1, logFC2,xtitle, ytitle
   
 
   
-  colors <- ifelse(plot_df[[logFC1]] > 0 & plot_df[[logFC2]] > 0, "Myeloid leukemia, NOS", 
+  plot_df$colors <- ifelse(plot_df[[logFC1]] > 0 & plot_df[[logFC2]] > 0, "Myeloid leukemia, NOS", 
                    ifelse(plot_df[[logFC1]] < 0 & plot_df[[logFC2]] < 0, "Lymphoid leukemia, NOS",
                           "disagreement"))
   
+  group.colors <- c(`disagreement` = "#880808", `Lymphoid leukemia, NOS` = "#333BFF", 
+                    `Myeloid leukemia, NOS` = "#32a848" )
   # print(plot_df$colors[1:10])
   # print(length(plot_df$colors))
   # print(head(plot_df))
@@ -45,6 +46,7 @@ compare_logFC <- function(df1, df2, intersect_vec, logFC1, logFC2,xtitle, ytitle
   
   p <- ggplot(plot_df, aes(!!logFC1, !!logFC2, colour = colors)) +
     geom_point() +
+    scale_color_manual(values = group.colors, name = "group") +
     labs(x = xtitle, y = ytitle, title = title)
   
   
@@ -88,12 +90,17 @@ compare_pvalue <- function(df1, df2, intersect_vec, pval1, pval2, xtitle, ytitle
   
   df1 <- filter(df1, gene %in% intersect_vec) %>% dplyr::select(gene, {{pval1}})
   plot_df <- filter(df2, gene %in% intersect_vec) %>% dplyr::select(gene, {{pval2}}) %>% merge(df1, by = "gene")
-  
+  df1[[pval1]] = -log10(df1[[pval1]])
+  df2[[pval2]] = -log10(df2[[pval2]])
   
   
   colors <- ifelse(plot_df[[pval1]] >= 0.05 & plot_df[[pval2]] >= 0.05, "Agreement, N.S", 
                        ifelse(plot_df[[pval1]] < 0.05 & plot_df[[pval2]] < 0.05, "Agreement, Sig",
                               "disagreement"))
+  
+  group.colors <- c(`disagreement` = "#880808", `Agreement, N.S` = "#333BFF", 
+                    `Agreement, Sig` = "#32a848" )
+  
   # print(plot_df$colors[1:10])
   # print(length(plot_df$colors))
   # print(head(plot_df))
@@ -103,6 +110,7 @@ compare_pvalue <- function(df1, df2, intersect_vec, pval1, pval2, xtitle, ytitle
   
   p <- ggplot(plot_df, aes(!!pval1, !!pval2, colour = colors)) +
     geom_point() +
+    scale_color_manual(values = group.colors, name = "group") +
     labs(x = xtitle, y = ytitle, title = title)
   
   
@@ -112,7 +120,8 @@ compare_pvalue <- function(df1, df2, intersect_vec, pval1, pval2, xtitle, ytitle
 }
 
 
-
+# mine$padj <- -log10(mine$padj)
+# limma.voom$adj.P.Val <- -log10(limma.voom$adj.P.Val)
 compare_pvalue(df1 = mine, df2 = limma.voom, intersect_vec = intersect_me_limma, pval1 = "padj", pval2 = "adj.P.Val", xtitle = "limma", ytitle = "mine", 
               title = "p-value comparison of all genes between mine and limma-voom")
 
