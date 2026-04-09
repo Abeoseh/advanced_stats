@@ -2,7 +2,9 @@
 title: "lab5"
 author: "Abeoseh Flemister"
 date: "2026-04-02"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -11,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## R Markdown
 
-(1)This question uses data from this paper:
+(1) This question uses data from this paper:
 
 <https://science.sciencemag.org/content/347/6217/78>
 
@@ -116,9 +118,9 @@ print(paste("rows in col_adema:", nrow(col_adema), "rows in bmi", nrow(bmi), "ro
 
 head(bmi)
 
-head(col_adema)
+head(col_adema[,c(1:10)])
 
-head(bmi_ColAdema)
+head(bmi_ColAdema[,c(1:10)])
 
 
 ```
@@ -178,5 +180,3 @@ for (i in length(sorted_pvals)){bh_pvals <- length(sorted_pvals * sorted_pvals[i
 print(paste(sum(bh_pvals < 0.05), "p-values were passed benjamin-hochberg correction."))
 
 ```
-
-**z**
