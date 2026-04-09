@@ -1,0 +1,149 @@
+---
+title: "lab6"
+author: "Abeoseh Flemister"
+date: "2026-04-09"
+output: html_document
+---
+
+Read in data
+
+```{r}
+temp <- tempfile()
+download.file("http://afodor.github.io/classes/stats2015/longitdunalRNASeqData.zip", temp)
+
+counts <- read.table(unz(temp, "nc101_scaff_dataCounts.txt"),  sep = "\t", header = TRUE, row.names = 1)
+
+annotations <- read.table(unz(temp, "nc101_Annotations.txt"),  sep = "\t", header = TRUE, row.names = 1)
+
+unlink(temp)
+
+print(head(counts))
+
+print(head(annotations))
+```
+
+Remove rare genes and normalize
+
+```{r cars}
+counts <- counts[ apply( counts, 1, median)> 5,]
+
+CountsNorm <- counts
+for ( i in 1:ncol(counts))
+{
+	colSum = sum(counts[,i])
+	CountsNorm[,i] = CountsNorm[,i]/colSum
+}
+
+```
+
+(The first 3 columns are “day 2”, the next 3 columns are “week 12” and the last 5 are “week 18” (even though they say w20)). 
+
+(A) For each row in the spreadsheet, perform a one-way ANOVA with categories “day 2”, “week 12” and “week 18”. Plot out the histogram of all p-values. How many genes are significant at a BH FDR-corrected 0.05 threshold.
+
+```{r}
+
+categories <- c(rep("D2",3), rep("W12",3), rep("W20",5))
+categories <- factor(categories)
+pvals <- vector(length = nrow(CountsNorm) )
+
+
+for (i in 1:nrow(CountsNorm)){
+  
+  linear_reg <- lm( as.numeric(CountsNorm[i,]) ~ categories )
+  
+  pvals[i] <- anova(linear_reg)[["Pr(>F)"]][1]
+  
+  }
+
+
+hist(pvals)
+
+sig = p.adjust(pvals, method = "BH")
+print(paste(sum(sig < 0.05),"p-vlaues are significant after benjamin hochberg correction"))
+
+most_sig1 = row.names(CountsNorm)[ match( min(sig), sig ) ]
+```
+
+```{r}
+row.names(CountsNorm)[ match( min(sig), sig ) ]
+```
+
+(A) Next make an ANOVA as a linear regression as a function of time (so 2 days, 86 days and 128 days).  Plot out the histogram of all p-values.  How many genes are significant at a BH FDR-corrected 0.05 threshold.
+
+```{r}
+
+days <- c(rep(2,3), rep(86,3), rep(128,5))
+pvals <- vector(length = nrow(CountsNorm) )
+
+
+for (i in 1:nrow(CountsNorm)){
+  
+  linear_reg <- lm( as.numeric(CountsNorm[i,]) ~ days )
+  
+  pvals[i] <- anova(linear_reg)[["Pr(>F)"]][1]
+  
+  }
+
+
+hist(pvals)
+
+sig = p.adjust(pvals, method = "BH")
+print(paste(sum(sig < 0.05),"p-vlaues are significant after benjamin hochberg correction"))
+
+most_sig2 = row.names(CountsNorm)[ match( min(sig), sig ) ]
+```
+
+(C) Finally, for each row in the spreadsheet perform an ANVOA comparing the three-parameter model from (A) and the two parameter model from (B).  Plot out the histogram of all p-values.  For how many genes is there a significant difference between these two models at a BH FDR-corrected threshold.
+
+```{r}
+x <- c(1,1,4,4,5,7,8,10)
+y = c("a", "a", "b", )
+x[which(x == 4)]
+
+```
+
+```{r}
+
+## make the reduced model the linear model.
+categories <- c(rep("D2",3), rep("W12",3), rep("W20",5))
+categories <- factor(categories)
+
+days <- c(rep(2,3), rep(86,3), rep(128,5))
+
+
+pvals <- vector(length = nrow(CountsNorm) )
+
+
+for (i in 1:nrow(CountsNorm)){
+  
+  
+  FullModel <- lm( as.numeric(CountsNorm[i,]) ~ categories )
+  FullResiduals <- sum( residuals(FullModel) ^ 2 )
+  
+  ReducedModel <- lm( as.numeric(CountsNorm[i,]) ~ days )
+  ReducedResiduals <- sum( residuals(ReducedModel) ^ 2 )
+  
+  ## df  = # data points - # params 
+  ## df in reduced = 11 - 2 = 9
+  ## df in full = 11 - 3 = 8
+  
+  F_value <- ( (ReducedResiduals - FullResiduals) / (9 - 8) ) / (FullResiduals - 8)
+  
+  pvals[i] <- pf(F_value, (9-8), 8, lower.tail = F)
+  }
+
+
+hist(pvals)
+
+sig = sum((p.adjust(pvals, method = "BH")) < 0.05)
+print(paste(sig,"p-vlaues are significant after benjamin hochberg correction"))
+```
+
+```{r}
+
+length(CountsNorm[i,])
+
+linear_reg <- lm( as.numeric(CountsNorm[i,]) ~ categories, x = TRUE)
+
+linear_reg$x
+```

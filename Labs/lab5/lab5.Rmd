@@ -140,28 +140,28 @@ for ( col in colnames(bmi_ColAdema)[2:length(bmi_ColAdema)] ){
 
 ```
 
-**By chance, approximately 0.05 of the p-values are significant. Therefore, I can conclude that the the positive p-values are by chance.**
+**By chance, approximately 0.10 of the p-values are significant. Therefore, I can conclude that the the positive p-values are by chance.**
 
 ```         
-"The porportion of significant p-values is 0.0547619047619048"
+"The porportion of significant p-values is 0.104761904761905"
 ```
 
-**At a p-value of 0.05 I expect 0.05 of the samples to be positive just by chance.**
+**At a p-value of 0.10 I expect 0.10 of the samples to be positive just by chance.**
 
 ```{r, echo=FALSE}
 
-print(paste("The porportion of significant p-values is", length(pvals[pvals < 0.05])/length(pvals)))
+print(paste("The porportion of significant p-values is", length(pvals[pvals < 0.10])/length(pvals)))
 
 h <- hist(pvals, breaks = 50, plot = FALSE)
-col = ifelse(h$mids <= 0.05, "green", "red")
+col = ifelse(h$mids <= 0.10, "green", "red")
 plot(h, col = col)
 ```
 
-**None of the p-values that pass the Bonferroni correction, this makes sense since I expected 0.05 of the p-values to be significant by chance which was the case.**
+**None of the p-values that pass the Bonferroni correction, this makes sense since I expected 0.10 of the p-values to be significant by chance which was the case.**
 
 ```{r}
 
-FDR_threshold <- 0.05 / length(pvals)
+FDR_threshold <- 0.10 / length(pvals)
 
 bonferonni_pvals = pvals[pvals <= FDR_threshold]
 
@@ -177,6 +177,8 @@ sorted_pvals <- sort(pvals)
 
 for (i in length(sorted_pvals)){bh_pvals <- length(sorted_pvals * sorted_pvals[i])/i}
 
-print(paste(sum(bh_pvals < 0.05), "p-values were passed benjamin-hochberg correction."))
+print(paste(sum(bh_pvals < 0.10), "p-values were passed benjamin-hochberg correction."))
 
 ```
+
+**The microbial community is not associated with** **BMI. I can see this because none of the p-values passed a p-value correction of 0.1 and the p-values were essentially normally distributed.**
