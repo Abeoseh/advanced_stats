@@ -2,7 +2,9 @@
 title: "lab6"
 author: "Abeoseh Flemister"
 date: "2026-04-09"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 Read in data
@@ -24,7 +26,7 @@ print(head(annotations))
 
 Remove rare genes and normalize
 
-```{r cars}
+```{r}
 counts <- counts[ apply( counts, 1, median)> 5,]
 
 CountsNorm <- counts
@@ -44,28 +46,26 @@ for ( i in 1:ncol(counts))
 
 categories <- c(rep("D2",3), rep("W12",3), rep("W20",5))
 categories <- factor(categories)
-pvals <- vector(length = nrow(CountsNorm) )
+aovpvals <- vector(length = nrow(CountsNorm) )
 
-
+aov1_index = vector(length = nrow(CountsNorm) )
+  
 for (i in 1:nrow(CountsNorm)){
   
   linear_reg <- lm( as.numeric(CountsNorm[i,]) ~ categories )
   
-  pvals[i] <- anova(linear_reg)[["Pr(>F)"]][1]
+  aovpvals[i] <- anova(linear_reg)[["Pr(>F)"]][1]
+  
   
   }
 
 
-hist(pvals)
+hist(aovpvals)
 
-sig = p.adjust(pvals, method = "BH")
+sig = p.adjust(aovpvals, method = "BH")
 print(paste(sum(sig < 0.05),"p-vlaues are significant after benjamin hochberg correction"))
 
-most_sig1 = row.names(CountsNorm)[ match( min(sig), sig ) ]
-```
-
-```{r}
-row.names(CountsNorm)[ match( min(sig), sig ) ]
+aov1_df <- data.frame()
 ```
 
 (A) Next make an ANOVA as a linear regression as a function of time (so 2 days, 86 days and 128 days).  Plot out the histogram of all p-values.  How many genes are significant at a BH FDR-corrected 0.05 threshold.
@@ -73,34 +73,27 @@ row.names(CountsNorm)[ match( min(sig), sig ) ]
 ```{r}
 
 days <- c(rep(2,3), rep(86,3), rep(128,5))
-pvals <- vector(length = nrow(CountsNorm) )
+lrpvals <- vector(length = nrow(CountsNorm) )
 
 
 for (i in 1:nrow(CountsNorm)){
   
   linear_reg <- lm( as.numeric(CountsNorm[i,]) ~ days )
   
-  pvals[i] <- anova(linear_reg)[["Pr(>F)"]][1]
+  lrpvals[i] <- anova(linear_reg)[["Pr(>F)"]][1]
   
   }
 
 
-hist(pvals)
+hist(lrpvals)
 
-sig = p.adjust(pvals, method = "BH")
+sig = p.adjust(lrpvals, method = "BH")
 print(paste(sum(sig < 0.05),"p-vlaues are significant after benjamin hochberg correction"))
 
-most_sig2 = row.names(CountsNorm)[ match( min(sig), sig ) ]
+most_sig2 = row.names(CountsNorm)[ which( sig == min(sig) ) ]
 ```
 
 (C) Finally, for each row in the spreadsheet perform an ANVOA comparing the three-parameter model from (A) and the two parameter model from (B).  Plot out the histogram of all p-values.  For how many genes is there a significant difference between these two models at a BH FDR-corrected threshold.
-
-```{r}
-x <- c(1,1,4,4,5,7,8,10)
-y = c("a", "a", "b", )
-x[which(x == 4)]
-
-```
 
 ```{r}
 
@@ -111,7 +104,7 @@ categories <- factor(categories)
 days <- c(rep(2,3), rep(86,3), rep(128,5))
 
 
-pvals <- vector(length = nrow(CountsNorm) )
+diffpvals <- vector(length = nrow(CountsNorm) )
 
 
 for (i in 1:nrow(CountsNorm)){
@@ -127,23 +120,67 @@ for (i in 1:nrow(CountsNorm)){
   ## df in reduced = 11 - 2 = 9
   ## df in full = 11 - 3 = 8
   
-  F_value <- ( (ReducedResiduals - FullResiduals) / (9 - 8) ) / (FullResiduals - 8)
+  F_value <- ( (ReducedResiduals - FullResiduals) / (9 - 8) ) / (FullResiduals / 8)
   
-  pvals[i] <- pf(F_value, (9-8), 8, lower.tail = F)
+  diffpvals[i] <- pf(F_value, (9-8), 8, lower.tail = F)
   }
 
 
-hist(pvals)
+hist(diffpvals)
 
-sig = sum((p.adjust(pvals, method = "BH")) < 0.05)
-print(paste(sig,"p-vlaues are significant after benjamin hochberg correction"))
+sig = p.adjust(diffpvals, method = "BH")
+print(paste(sum(sig < 0.05),"p-vlaues are significant after benjamin hochberg correction"))
+
+most_sig3 = row.names(CountsNorm)[ which( sig == min(sig) ) ]
 ```
+
+(D) Make three graphs showing the relative abundance of the most significant gene under each of the three ANOVA models. For (A) and (C), the x-axis will the category (day 3, week 12 and week 18) and the y-axis will be the relative abundance. Be sure to properly label and title all graphs and axes. For (B) the x-axis will be time (in days) and the y-axis will be the relative abundance. For the graph of the top hit from (B), include the regression line for the plot from (B).
+
+**Compare ANOVA models:**
 
 ```{r}
 
-length(CountsNorm[i,])
 
-linear_reg <- lm( as.numeric(CountsNorm[i,]) ~ categories, x = TRUE)
+df <- data.frame(index = 1:nrow(CountsNorm), anova = aovpvals, lr = lrpvals,  diff = diffpvals)
 
-linear_reg$x
+head(df)
 ```
+
+**ANOVA model 1:**
+
+```{r}
+
+df <- df[ order(df$anova), ] 
+
+boxplot( as.numeric( CountsNorm[ df$index[1],]) ~ categories, ylab = row.names(CountsNorm[ df$index[1],]) ) 
+
+
+
+```
+
+**ANOVA model 2**
+
+```{r}
+
+
+
+df <- df[ order(df$lr), ] 
+
+plot( as.numeric( CountsNorm[ df$index[1],]) ~ days, ylab = row.names(CountsNorm[ df$index[1],]) ) 
+
+
+```
+
+**ANOVA model 3**
+
+```{r}
+
+df <- df[ order(df$diff), ] 
+
+boxplot( as.numeric( CountsNorm[ df$index[1],]) ~ categories, ylab = row.names(CountsNorm[ df$index[1],]) ) 
+
+```
+
+(E) Overall, do you think the three parameter model in (A) or the two-parameter model in (B) is more appropriate for these data? Justify your answer.
+
+**The three parameter model has the null that the mean of the three time periods are equal, meaning that the three time periods have similar levels of relative abundance for the gene. The two parameter model has the null that the slope is 0, meaning there is no relationship between relative abundance and time. In my opinion, whether the three or two parameter model is more appropriate depends on your aims. If I want to determine whether there is an effect of some discrete event over time, I would use the three parameter model. If I wanted to determine if there was temporal change in the relative abundance of the bacteria, I would use the two parameter model.**
