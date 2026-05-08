@@ -18,7 +18,7 @@ geometricMean <- geometricMean <- apply(countsTable, 2, function(x) {
 ratios <- sweep(countsTable, 2, geometricMean, "/")
 size_factors <- apply(ratios, 1, median, na.rm = TRUE) ## median ratio
 
-for( gene in colnames(countsTable)[1] ){
+for( gene in colnames(countsTable) ){
   
   y <- countsTable[, gene]
   
