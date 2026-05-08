@@ -1,3 +1,7 @@
+MidtermStudyGuide 2026.docx
+Syllabus_Spring_2026.doc
+study.pdf
+study guides/
 lectures/
 *.docx
 *.txt
@@ -11,3 +15,4 @@ FinalProject/laml_tcga
 FinalProject/*.tar.gz
 FinalProject/*.docx
 FinalProject/Writing
+FinalProject/output/
