@@ -1,0 +1,132 @@
+PATIENT_ID	START_DATE	STOP_DATE	EVENT_TYPE	AGE_AT_DIAGNOSIS	GRADE	METHOD_OF_DIAGNOSIS	MORPHOLOGY	PRIMARY_DIAGNOSIS	STAGE
+TARGET-15-PAREAT	0		Diagnosis	2399			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-PARUIF	0		Diagnosis	2255					
+TARGET-15-PARWPU	0		Diagnosis	2129			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-PASZVW	0		Diagnosis	5835					
+TARGET-15-PAUFIB	0		Diagnosis	4642					
+TARGET-15-PAVFTF	0		Diagnosis	746					
+TARGET-15-SJMLL003311	0		Diagnosis	4330			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL003414	0		Diagnosis	1943			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL004013	0		Diagnosis	645			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL005001	0		Diagnosis	3667			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL011911	0		Diagnosis	5731			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL011912	0		Diagnosis	4386			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL011913	0		Diagnosis	4750			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL011914	0		Diagnosis	2613			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL011915	0		Diagnosis	990			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL012417	0		Diagnosis	4108			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL012418	0		Diagnosis	5940			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL012419	0		Diagnosis	5973			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL012420	0		Diagnosis	1001			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL012421	0		Diagnosis	4484			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL012422	0		Diagnosis	2552			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL012424	0		Diagnosis	3050			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL012425	0		Diagnosis	5103			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL012426	0		Diagnosis	511			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL012427	0		Diagnosis	5915			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL016108	0		Diagnosis	3497			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL016340	0		Diagnosis	3528			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL016342	0		Diagnosis	335			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL016343	0		Diagnosis	1198			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL016344	0		Diagnosis	2037			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL016447	0		Diagnosis	3285			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL016448	0		Diagnosis	5292			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL016449	0		Diagnosis	1885			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL017973	0		Diagnosis	5657			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL017975	0		Diagnosis	6527			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL017976	0		Diagnosis	5022			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL017977	0		Diagnosis	54			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL017978	0		Diagnosis	730			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL017979	0		Diagnosis	1916			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL017981	0		Diagnosis	184			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL019076	0		Diagnosis	2017			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL022667	0		Diagnosis	5943			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL040024	0		Diagnosis	366			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL040025	0		Diagnosis	3319			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL040026	0		Diagnosis	182			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL040027	0		Diagnosis	5657			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL040028	0		Diagnosis	6265			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL040030	0		Diagnosis	4931			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL040031	0		Diagnosis	1054			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL040032	0		Diagnosis	135			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL040033	0		Diagnosis	5242			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL040034	0		Diagnosis	2585			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL040035	0		Diagnosis	334			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL040036	0		Diagnosis	1983			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL040037	0		Diagnosis	5594			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL040038	0		Diagnosis	948			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL040039	0		Diagnosis	3089			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL040459	0		Diagnosis	2569			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL041117	0		Diagnosis	5523			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL041118	0		Diagnosis	3295			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL041119	0		Diagnosis	1105			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL041120	0		Diagnosis	5407			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL041121	0		Diagnosis	2415			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL041122	0		Diagnosis	486			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL042787	0		Diagnosis	4941			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL042788	0		Diagnosis	5478			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL042789	0		Diagnosis	1371			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL042791	0		Diagnosis	4824			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL042792	0		Diagnosis	1527			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL042793	0		Diagnosis	1757			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL042794	0		Diagnosis	5541			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL042795	0		Diagnosis	200			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL042796	0		Diagnosis	1457			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL042797	0		Diagnosis	2238			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL042798	0		Diagnosis	1751			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL042799	0		Diagnosis	4090			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL042800	0		Diagnosis	4685			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL042801	0		Diagnosis	1963			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL042940	0		Diagnosis	2902			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL042941	0		Diagnosis	140			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL042942	0		Diagnosis	1362			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL042943	0		Diagnosis	121			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL042946	0		Diagnosis	5588			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL043505	0		Diagnosis	1270			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL043506	0		Diagnosis	2218			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL043507	0		Diagnosis	2707			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL043508	0		Diagnosis	3505			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL043509	0		Diagnosis	2999			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL043510	0		Diagnosis	3828			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL043511	0		Diagnosis	3573			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL043512	0		Diagnosis	5664			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL043513	0		Diagnosis	3873			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL043514	0		Diagnosis	1752			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL043767	0		Diagnosis	138			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL043768	0		Diagnosis	183			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL043769	0		Diagnosis	5752			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL043770	0		Diagnosis	2716			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL043771	0		Diagnosis	3542			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL043772	0		Diagnosis	1796			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL043773	0		Diagnosis	2743			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL043774	0		Diagnosis	12			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL043775	0		Diagnosis	699			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL044945	0		Diagnosis	2776			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL044948	0		Diagnosis	547			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL044949	0		Diagnosis	4471			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL044950	0		Diagnosis	41			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL044953	0		Diagnosis	5272			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL044956	0		Diagnosis	5108			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL044957	0		Diagnosis	6211			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL046466	0		Diagnosis	851			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL046467	0		Diagnosis	2250			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL046468	0		Diagnosis	5809			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL046469	0		Diagnosis	1551			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL046470	0		Diagnosis	4623			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL046471	0		Diagnosis	730			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-15-SJMPAL046472	0		Diagnosis	6083			Precursor cell lymphoblastic leukemia, NOS	Precursor cell lymphoblastic leukemia, NOS	
+TARGET-20-SJAML003320	0		Diagnosis				Acute myeloid leukemia, NOS	Acute myeloid leukemia, NOS	
+TARGET-20-SJAML003322	0		Diagnosis				Acute myeloid leukemia, NOS	Acute myeloid leukemia, NOS	
+TARGET-20-SJAML007112	0		Diagnosis				Acute myeloid leukemia, NOS	Acute myeloid leukemia, NOS	
+TARGET-20-SJAML007113	0		Diagnosis				Acute myeloid leukemia, NOS	Acute myeloid leukemia, NOS	
+TARGET-20-SJAML016570	0		Diagnosis				Acute myeloid leukemia, NOS	Acute myeloid leukemia, NOS	
+TARGET-20-SJAML040268	0		Diagnosis				Acute myeloid leukemia, NOS	Acute myeloid leukemia, NOS	
+TARGET-20-SJAML045734	0		Diagnosis				Acute myeloid leukemia, NOS	Acute myeloid leukemia, NOS	
+TARGET-20-SJAML045735	0		Diagnosis				Acute myeloid leukemia, NOS	Acute myeloid leukemia, NOS	
+TARGET-20-SJAML045736	0		Diagnosis				Acute myeloid leukemia, NOS	Acute myeloid leukemia, NOS	
+TARGET-20-SJAML045737	0		Diagnosis				Acute myeloid leukemia, NOS	Acute myeloid leukemia, NOS	
+TARGET-20-SJAML045738	0		Diagnosis				Acute myeloid leukemia, NOS	Acute myeloid leukemia, NOS	
+TARGET-20-SJAML045739	0		Diagnosis				Acute myeloid leukemia, NOS	Acute myeloid leukemia, NOS	
+TARGET-20-SJAML045740	0		Diagnosis				Acute myeloid leukemia, NOS	Acute myeloid leukemia, NOS	
+TARGET-20-SJAML045741	0		Diagnosis				Acute myeloid leukemia, NOS	Acute myeloid leukemia, NOS	
+TARGET-20-SJAML045742	0		Diagnosis				Acute myeloid leukemia, NOS	Acute myeloid leukemia, NOS	

@@ -1,0 +1,196 @@
+#Patient Identifier	Birth from Initial Pathologic Diagnosis Date	Death from Initial Pathologic Diagnosis Date	Ethnicity Category	Project Identifier	Primary Diagnosis	Patient Primary Tumor Site	Race Category	Sex	Patient's Vital Status	Overall Survival Status	Overall Survival (Months)	Diagnosis Age
+#Identifier to uniquely specify a patient.	Time interval from a person's date of birth to the date of initial pathologic diagnosis, represented as a calculated number of days.	Time interval from a person's date of death to the date of initial pathologic diagnosis, represented as a calculated number of days.	The text for reporting information about ethnicity (uses NAACCR values).	GDC-assigned identifier for the project to which a case belongs.	Text term used to describe the patient's histologic diagnosis, as described by the World Health Organization's (WHO) International Classification of Diseases for Oncology (ICD-O).	Text term to describe the organ sub-division in an individual with cancer.	The text for reporting information about race.	Text designations that identify gender. Gender is described as the assemblage of properties that distinguish people on the basis of their societal roles. [Explanatory Comment 1: Identification of gender is based upon self-report and may come from a form, questionnaire, interview, etc.]	The survival state of the person.	The patient's survival status; is the patient alive or deceased.	If alive, the number of months the patient has survived since initial diagnosis, otherwise the number of months the patient survived before death.	Age at the time of diagnosis expressed in number of days since birth.
+#STRING	NUMBER	NUMBER	STRING	STRING	STRING	STRING	STRING	STRING	STRING	STRING	NUMBER	NUMBER
+#1	1	1	1	1	1	1	1	1	1	9	1	1
+PATIENT_ID	DAYS_TO_BIRTH	DAYS_TO_DEATH	ETHNICITY	PROJECT_ID	PRIMARY_DIAGNOSIS	PRIMARY_SITE_PATIENT	RACE	SEX	VITAL_STATUS	OS_STATUS	OS_MONTHS	AGE
+TARGET-00-SJNORM016096				TARGET-ALL-P3								
+TARGET-00-SJNORM016314				TARGET-ALL-P3								
+TARGET-00-SJNORM018231				TARGET-ALL-P3								
+TARGET-00-SJNORM054698				TARGET-ALL-P3								
+TARGET-10-PANJRD			Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Female				
+TARGET-10-PANKMB			Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Female				
+TARGET-10-PANRIM	-643		Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Female	Alive	0:LIVING		18
+TARGET-10-PANWPI	-5812		Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Male	Alive	0:LIVING		18
+TARGET-10-PANYHW			Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Female				
+TARGET-10-PANYXC	-1238		Hispanic or Latino	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Male	Alive	0:LIVING		18
+TARGET-10-PAPAJU			Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Female				
+TARGET-10-PAPAWY			Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	Black or African American	Female				
+TARGET-10-PAPDAU	-470		Hispanic or Latino	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Male	Alive	0:LIVING		18
+TARGET-10-PAPDCR	-1519		Hispanic or Latino	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-10-PAPEWV	-1551		Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Male	Alive	0:LIVING		18
+TARGET-10-PAPEZX	-4687		Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Female	Alive	0:LIVING		18
+TARGET-10-PAPGMC			Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	Asian	Female				
+TARGET-10-PAPGPJ			Hispanic or Latino	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Male				
+TARGET-10-PAPHGD			Hispanic or Latino	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Male				
+TARGET-10-PAPIGH	-4800		Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Male	Alive	0:LIVING		18
+TARGET-10-PAPIGX	-5231		Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	Black or African American	Female	Alive	0:LIVING		18
+TARGET-10-PARAMR				TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System						
+TARGET-10-PARMGY				TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System						
+TARGET-10-PARPYJ	-2719		Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Female	Alive	0:LIVING		18
+TARGET-10-PARSET			Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	Black or African American	Male				
+TARGET-10-PARTBP	-2057		Hispanic or Latino	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Male	Alive	0:LIVING		18
+TARGET-10-PARTPW			Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	Asian	Male				
+TARGET-10-PARUEU			Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Male				
+TARGET-10-PARXLS			Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Male				
+TARGET-10-PARXMV	-4523		Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Male	Alive	0:LIVING		18
+TARGET-10-PASFLK	-4390		Hispanic or Latino	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Male	Alive	0:LIVING		18
+TARGET-10-PASHNK	-2416			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Male	Alive	0:LIVING		18
+TARGET-10-PASHUP			Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Male				
+TARGET-10-PASIIY	-2171			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Male	Alive	0:LIVING		18
+TARGET-10-PASJJR	-5216		Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Male	Alive	0:LIVING		18
+TARGET-10-PASJLN	-3991		Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Male	Alive	0:LIVING		18
+TARGET-10-PASJYI			Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Male				
+TARGET-10-PASNTZ				TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male				
+TARGET-10-PASRCV			Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Female				
+TARGET-10-PASRMM	-1595		Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Male	Alive	0:LIVING		18
+TARGET-10-PASWFN	-4136		Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	Black or African American	Male	Alive	0:LIVING		18
+TARGET-10-PASZEW			Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female				
+TARGET-10-PASZJW			Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Male				
+TARGET-10-PATALJ			Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	Black or African American	Male				
+TARGET-10-PATBGC	-3946		Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	Black or African American	Female	Alive	0:LIVING		18
+TARGET-10-PATCNI	-1682		Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	Black or African American	Female	Alive	0:LIVING		18
+TARGET-10-PATDKH				TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System						
+TARGET-10-PATFWF	-6364			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-10-PATGBY				TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Male				
+TARGET-10-PATGWP			Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	Black or African American	Male				
+TARGET-10-PATGYH	-5959		Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	Black or African American	Male	Alive	0:LIVING		18
+TARGET-10-PATHBG	-1081		Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Female	Alive	0:LIVING		18
+TARGET-10-PATKVD	-904		Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Male	Alive	0:LIVING		18
+TARGET-10-PATRGV			Non-Hispanic	TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System	White	Female				
+TARGET-10-PATXKD				TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System						
+TARGET-10-SJALL040058				TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System						
+TARGET-10-SJBALL004182				TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System						
+TARGET-10-SJBALL014146				TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System						
+TARGET-10-SJBALL014594				TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System						
+TARGET-10-SJBALL021816				TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System						
+TARGET-15-PAREAT	-2399	74		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Dead	1:DECEASED	2.431011826544021	18
+TARGET-15-PARUIF	-2255	1634	Non-Hispanic	TARGET-ALL-P3	Leukemia, NOS	Immune System	White	Female	Dead	1:DECEASED	53.679369250985545	18
+TARGET-15-PARWPU	-2129			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-PASZVW	-5835		Non-Hispanic	TARGET-ALL-P3	Leukemia, NOS	Immune System	White	Male	Alive	0:LIVING		18
+TARGET-15-PAUFIB	-4642		Non-Hispanic	TARGET-ALL-P3	Leukemia, NOS	Immune System	Native Hawaiian or Other Pacific Islander	Female	Alive	0:LIVING		18
+TARGET-15-PAVFTF	-746		Non-Hispanic	TARGET-ALL-P3	Leukemia, NOS	Immune System	Black or African American	Male	Alive	0:LIVING		18
+TARGET-15-SJMLL003311	-4330	39		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Dead	1:DECEASED	1.281208935611038	18
+TARGET-15-SJMPAL003414	-1943	20		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Dead	1:DECEASED	0.657030223390276	18
+TARGET-15-SJMPAL004013	-645	2510		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Dead	1:DECEASED	82.45729303547962	18
+TARGET-15-SJMPAL005001	-3667	775		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Dead	1:DECEASED	25.45992115637319	18
+TARGET-15-SJMPAL011911	-5731			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL011912	-4386			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL011913	-4750			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL011914	-2613			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL011915	-990	198		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Dead	1:DECEASED	6.504599211563732	18
+TARGET-15-SJMPAL012417	-4108	53		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Dead	1:DECEASED	1.7411300919842312	18
+TARGET-15-SJMPAL012418	-5940			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male				18
+TARGET-15-SJMPAL012419	-5973			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL012420	-1001			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Alive	0:LIVING		18
+TARGET-15-SJMPAL012421	-4484			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Alive	0:LIVING		18
+TARGET-15-SJMPAL012422	-2552			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL012424	-3050			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL012425	-5103	591		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Dead	1:DECEASED	19.415243101182654	18
+TARGET-15-SJMPAL012426	-511			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL012427	-5915	162		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Dead	1:DECEASED	5.321944809461235	18
+TARGET-15-SJMPAL016108	-3497			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Alive	0:LIVING		18
+TARGET-15-SJMPAL016340	-3528			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL016342	-335	295		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Dead	1:DECEASED	9.69119579500657	18
+TARGET-15-SJMPAL016343	-1198	511		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Dead	1:DECEASED	16.78712220762155	18
+TARGET-15-SJMPAL016344	-2037			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Alive	0:LIVING		18
+TARGET-15-SJMPAL016447	-3285			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL016448	-5292	403		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Dead	1:DECEASED	13.23915900131406	18
+TARGET-15-SJMPAL016449	-1885			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Alive	0:LIVING		18
+TARGET-15-SJMPAL017973	-5657			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL017975	-6527			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL017976	-5022			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL017977	-54	1		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Dead	1:DECEASED	0.0328515111695138	18
+TARGET-15-SJMPAL017978	-730			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Alive	0:LIVING		18
+TARGET-15-SJMPAL017979	-1916	721		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Dead	1:DECEASED	23.68593955321945	18
+TARGET-15-SJMPAL017981	-184			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Alive	0:LIVING		18
+TARGET-15-SJMPAL019076	-2017			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL022667	-5943			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL040024	-366	1033		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Dead	1:DECEASED	33.93561103810775	18
+TARGET-15-SJMPAL040025	-3319			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Alive	0:LIVING		18
+TARGET-15-SJMPAL040026	-182	30		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Dead	1:DECEASED	0.9855453350854139	18
+TARGET-15-SJMPAL040027	-5657			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL040028	-6265			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Alive	0:LIVING		18
+TARGET-15-SJMPAL040030	-4931	66		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Dead	1:DECEASED	2.1681997371879107	18
+TARGET-15-SJMPAL040031	-1054			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL040032	-135	436		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Dead	1:DECEASED	14.323258869908015	18
+TARGET-15-SJMPAL040033	-5242	1658		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Dead	1:DECEASED	54.467805519053876	18
+TARGET-15-SJMPAL040034	-2585			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL040035	-334			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL040036	-1983			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female				18
+TARGET-15-SJMPAL040037	-5594			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL040038	-948			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Alive	0:LIVING		18
+TARGET-15-SJMPAL040039	-3089			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male				18
+TARGET-15-SJMPAL040459	-2569			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Alive	0:LIVING		18
+TARGET-15-SJMPAL041117	-5523			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL041118	-3295			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL041119	-1105	469		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Dead	1:DECEASED	15.407358738501971	18
+TARGET-15-SJMPAL041120	-5407	880		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Dead	1:DECEASED	28.90932982917214	18
+TARGET-15-SJMPAL041121	-2415			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL041122	-486			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Alive	0:LIVING		18
+TARGET-15-SJMPAL042787	-4941	60		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Dead	1:DECEASED	1.9710906701708277	18
+TARGET-15-SJMPAL042788	-5478			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Dead	1:DECEASED		18
+TARGET-15-SJMPAL042789	-1371			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL042791	-4824			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Alive	0:LIVING		18
+TARGET-15-SJMPAL042792	-1527			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Alive	0:LIVING		18
+TARGET-15-SJMPAL042793	-1757			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Alive	0:LIVING		18
+TARGET-15-SJMPAL042794	-5541	25		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Dead	1:DECEASED	0.8212877792378449	18
+TARGET-15-SJMPAL042795	-200	600		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Dead	1:DECEASED	19.71090670170828	18
+TARGET-15-SJMPAL042796	-1457			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL042797	-2238			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Alive	0:LIVING		18
+TARGET-15-SJMPAL042798	-1751	443		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Dead	1:DECEASED	14.553219448094612	18
+TARGET-15-SJMPAL042799	-4090	486		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Dead	1:DECEASED	15.965834428383705	18
+TARGET-15-SJMPAL042800	-4685	364		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Dead	1:DECEASED	11.957950065703022	18
+TARGET-15-SJMPAL042801	-1963			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL042940	-2902			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL042941	-140			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL042942	-1362	1054		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Dead	1:DECEASED	34.62549277266754	18
+TARGET-15-SJMPAL042943	-121	740		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Dead	1:DECEASED	24.31011826544021	18
+TARGET-15-SJMPAL042946	-5588	320		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Dead	1:DECEASED	10.512483574244415	18
+TARGET-15-SJMPAL043505	-1270	1562		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Dead	1:DECEASED	51.31406044678055	18
+TARGET-15-SJMPAL043506	-2218	769		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Dead	1:DECEASED	25.26281208935611	18
+TARGET-15-SJMPAL043507	-2707			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male				18
+TARGET-15-SJMPAL043508	-3505	1806		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Dead	1:DECEASED	59.32982917214191	18
+TARGET-15-SJMPAL043509	-2999			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL043510	-3828	39		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Dead	1:DECEASED	1.281208935611038	18
+TARGET-15-SJMPAL043511	-3573			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female				18
+TARGET-15-SJMPAL043512	-5664			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Alive	0:LIVING		18
+TARGET-15-SJMPAL043513	-3873			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male				18
+TARGET-15-SJMPAL043514	-1752	682		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Dead	1:DECEASED	22.404730617608408	18
+TARGET-15-SJMPAL043767	-138			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male				18
+TARGET-15-SJMPAL043768	-183			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female				18
+TARGET-15-SJMPAL043769	-5752	572		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Dead	1:DECEASED	18.791064388961892	18
+TARGET-15-SJMPAL043770	-2716			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL043771	-3542			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Alive	0:LIVING		18
+TARGET-15-SJMPAL043772	-1796	771		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Dead	1:DECEASED	25.328515111695136	18
+TARGET-15-SJMPAL043773	-2743	394		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Dead	1:DECEASED	12.943495400788436	18
+TARGET-15-SJMPAL043774	-12	156		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Dead	1:DECEASED	5.124835742444152	18
+TARGET-15-SJMPAL043775	-699			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL044945	-2776			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Alive	0:LIVING		18
+TARGET-15-SJMPAL044948	-547			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL044949	-4471			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL044950	-41	301		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Dead	1:DECEASED	9.888304862023652	18
+TARGET-15-SJMPAL044953	-5272			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male				18
+TARGET-15-SJMPAL044956	-5108			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL044957	-6211			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL046466	-851			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Alive	0:LIVING		18
+TARGET-15-SJMPAL046467	-2250	1630		TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Dead	1:DECEASED	53.547963206307486	18
+TARGET-15-SJMPAL046468	-5809			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL046469	-1551			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL046470	-4623			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Female	Alive	0:LIVING		18
+TARGET-15-SJMPAL046471	-730			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-15-SJMPAL046472	-6083			TARGET-ALL-P3	Lymphoid leukemia, NOS	Immune System		Male	Alive	0:LIVING		18
+TARGET-20-SJAML003320				TARGET-ALL-P3	Myeloid leukemia, NOS	Immune System						
+TARGET-20-SJAML003322				TARGET-ALL-P3	Myeloid leukemia, NOS	Immune System						
+TARGET-20-SJAML007112				TARGET-ALL-P3	Myeloid leukemia, NOS	Immune System						
+TARGET-20-SJAML007113				TARGET-ALL-P3	Myeloid leukemia, NOS	Immune System						
+TARGET-20-SJAML016570				TARGET-ALL-P3	Myeloid leukemia, NOS	Immune System						
+TARGET-20-SJAML040268				TARGET-ALL-P3	Myeloid leukemia, NOS	Immune System						
+TARGET-20-SJAML045734				TARGET-ALL-P3	Myeloid leukemia, NOS	Immune System						
+TARGET-20-SJAML045735				TARGET-ALL-P3	Myeloid leukemia, NOS	Immune System						
+TARGET-20-SJAML045736				TARGET-ALL-P3	Myeloid leukemia, NOS	Immune System						
+TARGET-20-SJAML045737				TARGET-ALL-P3	Myeloid leukemia, NOS	Immune System						
+TARGET-20-SJAML045738				TARGET-ALL-P3	Myeloid leukemia, NOS	Immune System						
+TARGET-20-SJAML045739				TARGET-ALL-P3	Myeloid leukemia, NOS	Immune System						
+TARGET-20-SJAML045740				TARGET-ALL-P3	Myeloid leukemia, NOS	Immune System						
+TARGET-20-SJAML045741				TARGET-ALL-P3	Myeloid leukemia, NOS	Immune System						
+TARGET-20-SJAML045742				TARGET-ALL-P3	Myeloid leukemia, NOS	Immune System						
