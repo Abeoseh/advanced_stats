@@ -3,11 +3,9 @@ Syllabus_Spring_2026.doc
 study.pdf
 study guides/
 lectures/
-*.docx
 *.txt
 *.tar.gz
 *.csv
-*.png
 *.RDataTmp
 *.Rhistory
 FinalProject/alal_target_gdc
